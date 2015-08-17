@@ -1,17 +1,17 @@
 {
-  "name": "",
+  "name": "living-wage-map",
   "version": "0.0.0",
-  "description": "",
+  "description": "In many American communities, families working in low-wage jobs make insufficient income to live locally given the local cost of living. The is a Esri Story Map that explores MIT Living Wage Calculator Data.",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ssylvia/living-wage-map.git"
   },
   "author": "Esri",
   "license": "Apache",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/ssylvia/living-wage-map/issues"
   },
-  "homepage": "",
+  "homepage": "http://storymaps.esri.com/stories/2015/living-wage-map",
   "devDependencies": {
     "confidence": "^1.2.0",
     "glue": "^2.1.1",

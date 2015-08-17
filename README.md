@@ -1,4 +1,4 @@
-# storymaps-leaflet-boilerplate
+# living-wage-map
 
 ### Requirements
 - Node

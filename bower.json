@@ -1,7 +1,7 @@
 {
-  "name": "storymaps-leaflet-boilerplate",
+  "name": "living-wage-map",
   "version": "0.0.0",
-  "homepage": "",
+  "homepage": "http://storymaps.esri.com/stories/2015/living-wage-map",
   "authors": [
     "Esri"
   ],
