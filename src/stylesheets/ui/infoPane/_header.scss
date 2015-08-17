@@ -34,7 +34,7 @@ $fontSize: 1em;
   }
 
   .logo{
-    background-image: url("../../resources/images/meta/esri-reversed-logo.svg");
+    background-image: image-url($logoPath);
     background-size: auto ($headerHeight - 1em);
     background-repeat: no-repeat;
     background-position: right 25px center;

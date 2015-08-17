@@ -62,19 +62,21 @@ module.exports = function(grunt) {
       dev: {
         options: {
           importPath: ['src/lib/open-sans-fontface'],
-          sassDir: 'src/stylesheets',
-          cssDir: 'build/stylesheets',
-          fontsDir: 'src/resources/fonts',
-          imagesDir: 'src/resources/images'
+          basePath: 'src/',
+          // relativeAssets: true,
+          sassDir: 'stylesheets',
+          cssDir: '../build/stylesheets',
+          imagesDir: 'resources/images'
         }
       },
       dist: {
         options: {
           importPath: ['src/lib/open-sans-fontface'],
-          sassDir: 'src/stylesheets',
-          cssDir: 'dist/stylesheets',
-          fontsDir: 'src/resources/fonts',
-          imagesDir: 'src/resources/images',
+          basePath: 'dist/',
+          relativeAssets: true,
+          sassDir: '../src/stylesheets',
+          cssDir: 'stylesheets',
+          imagesDir: 'resources/images',
           outputStyle: 'compressed'
         }
       }
@@ -88,6 +90,15 @@ module.exports = function(grunt) {
     },
 
     copy: {
+      ftpDeploy: {
+        files: [{
+          expand: true,
+          flatten: true,
+          cwd: 'config/deploy/',
+          src: ['*.json'],
+          dest: 'dist/'
+        }]
+      },
       fontsDev: {
         files: [{
           expand: true,
@@ -273,6 +284,7 @@ module.exports = function(grunt) {
     'swig:dist',
     'compass:dist',
     'requirejs',
+    'copy:ftpDeploy',
     'browserSync:dist'
   ]);
 

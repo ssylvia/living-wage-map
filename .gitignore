@@ -20,5 +20,6 @@ build/
 dist/
 
 # FTP Settings
+config/deploy/
 sftp-config.json
 sftp-config-alt.json
