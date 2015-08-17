@@ -1,0 +1,42 @@
+$headerHeight: 3.5em;
+$fontSize: 1em;
+
+.header{
+  background-color: $highlightBackground;
+  width: 100%;
+  height: $headerHeight;
+
+  a{
+    color: $headerLink;
+    text-decoration: none;
+
+    &:hover{
+      color: $headerLinkActive;
+    }
+  }
+
+  .smLink, .logo{
+    height: 100%;
+    width: 33%;
+  }
+
+  .smLink, .social{
+    font-size: fontSize;
+    line-height: ($headerHeight - $fontSize + 1);
+  }
+
+  .smLink{
+    padding-left: 25px;
+  }
+
+  .social{
+    text-align: center;
+  }
+
+  .logo{
+    background-image: url("../../resources/images/meta/esri-reversed-logo.svg");
+    background-size: auto ($headerHeight - 1em);
+    background-repeat: no-repeat;
+    background-position: right 25px center;
+  }
+}

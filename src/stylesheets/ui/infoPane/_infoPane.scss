@@ -1,0 +1,12 @@
+@import "header";
+
+.info-pane{
+  background-color: $mainBackground;
+  width: 25%;
+  max-width: 600px;
+  min-width: 450px;
+
+  .intro-text{
+    padding: 25px;
+  }
+}

@@ -49,6 +49,31 @@
 </head>
 <body>
 
+  <div class="app">
+
+    <div class="intro"></div>
+
+    <div class="content">
+
+      <div class="info-pane region-left">
+        <div class="header region-top">
+          <a href="//storymaps.arcgis.com" target="_blank" class="smLink region-left">A story map</a>
+          <div class="social region-center"><span class="icon-facebook"></span></div>
+          <a href="//esri.com" target="_blank" class="logo region-right"></a>
+        </div>
+        <div class="main region-center">
+          <div class="intro-text region-top">
+            <h1>The <span class="callout"><strong>Living Wage</strong></span> Map</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio adipisci quisquam aspernatur, vitae molestiae quo odit! Nisi amet animi reiciendis. Distinctio vitae quis quae minus iure odio et sed aperiam voluptas voluptate velit sunt id quos quidem eaque nesciunt doloribus reiciendis tempora, nulla eum libero. Ea, expedita quidem itaque quibusdam qui ducimus enim sapiente aperiam at porro accusamus officiis dolorem, voluptatibus debitis labore ipsam perspiciatis adipisci iusto placeat. Magnam dolores facilis, eaque qui! Consequuntur eveniet reprehenderit tempora deleniti explicabo illum qui, enim ducimus. Quia ex asperiores recusandae dolore temporibus dolorum earum neque hic assumenda excepturi eaque animi, rerum doloremque voluptatem.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="map" class="map region-center"></div>
+    </div><!--/content-->
+
+  </div>
+
   <script src="javascript/require/require.js"></script>
   {% if environment === 'development' %}
   <script>

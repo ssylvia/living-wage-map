@@ -1,0 +1,28 @@
+@import "compass/reset";
+@import "typography";
+
+.app{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  .content{
+    height: 100%;
+    width: 100%;
+  }
+
+  .region-right{
+    position: absolute;
+    right: 0;
+  }
+
+  .region-left, .region-center, .region-top, .region-bottom{
+    position: absolute;
+    left: 0;
+  }
+
+  .region-bottom{
+    bottom: 0;
+  }
+}

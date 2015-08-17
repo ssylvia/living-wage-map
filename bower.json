@@ -20,7 +20,11 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "require": "http://requirejs.org/docs/release/2.1.20/minified/require.js",
-    "leaflet": "http://cdn.leafletjs.com/downloads/leaflet-1.0.0-b1.zip",
-    "esri-leaflet": "https://github.com/Esri/esri-leaflet/archive/v2.0.0-beta.5.zip"
+    "leaflet": "http://cdn.leafletjs.com/downloads/leaflet-0.7.3.zip",
+    "esri-leaflet": "https://github.com/Esri/esri-leaflet/archive/v1.0.0.zip",
+    "text": "~2.0.14",
+    "velocity": "~1.2.2",
+    "require-css": "~0.1.8",
+    "open-sans-fontface": "~1.4.2"
   }
 }

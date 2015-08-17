@@ -31,7 +31,7 @@ module.exports = function(grunt) {
               port: 5050
             }
           },
-          open: false
+          open: false,
         }
       },
       dist: {
@@ -61,14 +61,20 @@ module.exports = function(grunt) {
     compass: {
       dev: {
         options: {
+          importPath: ['src/lib/open-sans-fontface'],
           sassDir: 'src/stylesheets',
-          cssDir: 'build/stylesheets'
+          cssDir: 'build/stylesheets',
+          fontsDir: 'src/resources/fonts',
+          imagesDir: 'src/resources/images'
         }
       },
       dist: {
         options: {
+          importPath: ['src/lib/open-sans-fontface'],
           sassDir: 'src/stylesheets',
           cssDir: 'dist/stylesheets',
+          fontsDir: 'src/resources/fonts',
+          imagesDir: 'src/resources/images',
           outputStyle: 'compressed'
         }
       }
@@ -82,6 +88,22 @@ module.exports = function(grunt) {
     },
 
     copy: {
+      fontsDev: {
+        files: [{
+          expand: true,
+          cwd: 'src/lib/open-sans-fontface/',
+          src: ['fonts/**/*'],
+          dest: 'build/stylesheets'
+        }]
+      },
+      fontsDist: {
+        files: [{
+          expand: true,
+          cwd: 'src/lib/open-sans-fontface/',
+          src: ['fonts/**/*'],
+          dest: 'dist/stylesheets'
+        }]
+      },
       requireDist: {
         files: [{
           expand: true,
@@ -119,6 +141,27 @@ module.exports = function(grunt) {
       options: {jshintrc: '.jshintrc'}
     },
 
+    fontello: {
+      dev: {
+        options: {
+          config: 'config/fontello/config.json',
+          fonts: 'build/stylesheets/fonts/fontello',
+          styles: 'src/stylesheets/icons',
+          scss: true,
+          force: true
+        }
+      },
+      dist: {
+        options: {
+          config: 'config/fontello/config.json',
+          fonts: 'dist/stylesheets/fonts/fontello',
+          styles: 'src/stylesheets/icons',
+          scss: true,
+          force: true
+        }
+      }
+    },
+
     nodemon: {
       dev: {
         options: {
@@ -147,6 +190,25 @@ module.exports = function(grunt) {
       },
       dev: {
         path: 'http://localhost:4000'
+      }
+    },
+
+    replace: {
+      iconsDev: {
+        src: ['src/stylesheets/icons/*.scss'],
+        overwrite: true,
+        replacements: [{
+          from: '../font',
+          to: './fonts/fontello'
+        }]
+      },
+      iconsDist: {
+        src: ['src/stylesheets/icons/*.scss'],
+        overwrite: true,
+        replacements: [{
+          from: '../font',
+          to: './fonts/fontello'
+        }]
       }
     },
 
@@ -192,6 +254,9 @@ module.exports = function(grunt) {
     'clean:build',
     'jshint',
     'copy:requireDev',
+    'copy:fontsDev',
+    'fontello:dev',
+    'replace:iconsDev',
     'compass:dev',
     'open:dev',
     'concurrent:devWatch'
@@ -201,7 +266,10 @@ module.exports = function(grunt) {
     'clean:dist',
     'jshint',
     'copy:requireDist',
+    'copy:fontsDist',
     'copy:resources',
+    'fontello:dist',
+    'replace:iconsDist',
     'swig:dist',
     'compass:dist',
     'requirejs',

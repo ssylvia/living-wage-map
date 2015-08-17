@@ -1,0 +1,51 @@
+@import "sass/mixins";
+@import "sass/variables";
+@import "sass/Regular";
+// @import "sass/Light";
+// @import "sass/LightItalic";
+@import "sass/Bold";
+@import "sass/BoldItalic";
+
+h1,h2,h3,h4,h5,h6,p,a,div,li,span{
+  font-family: 'Open Sans';
+  color: $mainColor;
+
+  &.callout{
+    color: $mainCallout
+  }
+}
+
+strong,b{
+  font-weight: bold;
+}
+
+html {font-size: 1em;}
+
+body {
+  background-color: white;
+  font-family: 'Open Sans', serif;
+  font-weight: 300;
+  line-height: 1.45;
+  color: $mainColor;
+}
+
+p {margin-bottom: 1.3em;}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 2.074em;
+}
+
+h2 {font-size: 1.728em;}
+
+h3 {font-size: 1.44em;}
+
+h4 {font-size: 1.2em;}
+
+small, .font_small {font-size: 0.833em;}
