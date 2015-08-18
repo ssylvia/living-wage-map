@@ -10,11 +10,14 @@ define(['jquery',
       var map = internals.map = L.map(internals.settings.el,
         internals.settings.config.leafletOptions);
 
+      map.on('load',function(){
+        internals.onLoad();
+      });
+
       if (internals.settings.config.initialBounds){
         map.fitBounds(internals.settings.config.initialBounds);
       }
 
-      internals.onLoad();
     };
 
     internals.onLoad = function(){

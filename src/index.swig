@@ -58,7 +58,11 @@
       <div class="info-pane region-left">
         <div class="header region-top">
           <a href="//storymaps.arcgis.com" target="_blank" class="smLink region-left">A story map</a>
-          <div class="social region-center"><span class="icon-facebook"></span></div>
+          <div class="share region-center">
+            <span class="share-icon icon-facebook"></span>
+            <span class="share-icon icon-twitter"></span>
+            <span class="share-icon icon-link"></span>
+          </div>
           <a href="//esri.com" target="_blank" class="logo region-right"></a>
         </div>
         <div class="main region-center">

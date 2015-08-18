@@ -8,6 +8,34 @@ define(['jquery',
       config: {}
     };
 
+    internals.config.dataFields = {
+      counties: {
+        locationName: 'countyname',
+        stateName: 'state',
+        singleAdultMinimumWage: 'F1A_minw_1',
+        singleAdultLivingWage: 'F1A_inco_3',
+        singleAdultWageGap: 'F1A_Gap',
+        singleParentMinimumWage: 'F1A1C_mi_1',
+        singleParentLivingWage: 'F1A1C_in_3',
+        singleParentWageGap: 'F1A1C_Gap',
+        workingParentMinimumWage: 'F1A1S2C__5',
+        workingParentLivingWage: 'F1A1S2C__3',
+        workingParentWageGap: 'F1A1S2C_Ga'
+      }
+    };
+
+    // Main living wage invisible data layer
+    internals.config.livingWageDataLayer = L.esri.featureLayer({
+      url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
+      // style: function(ftr){
+      //   return {
+      //     stroke: false,
+      //     fill: false
+      //   };
+      // },
+      simplifyFactor: 0.5
+    });
+
     // Basemap layers
     internals.basemapLayers = {
       grayBasemap: L.esri.basemapLayer('Gray',{
@@ -26,24 +54,13 @@ define(['jquery',
       }
     };
 
-    // Main living wage invisible data layer
-    internals.config.livingWageDataLayer = L.esri.featureLayer({
-      url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
-      style: function(ftr){
-        return {
-          stroke: false,
-          fill: false
-        };
-      },
-      simplifyFactor: 0.5
-    });
-
     // Map configuration
     internals.config.map = {
       leafletOptions: {
         layers: [
           internals.basemapLayers.grayBasemap,
-          internals.config.livingWageLayers.singleAdult.layerObj
+          internals.config.livingWageLayers.singleAdult.layerObj,
+          internals.config.livingWageDataLayer
         ],
         maxBounds: [[72,-60],[13,-182]]
       },
