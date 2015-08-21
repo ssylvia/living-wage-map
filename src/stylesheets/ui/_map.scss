@@ -1,3 +1,45 @@
+@import "compass/css3/filter";
+@import "compass/css3/animation";
+
 .map {
   background-color: $contentBackground;
+
+  .living-wage-labels-layer{
+    @include animation(labelsToBlack 2s);
+  }
+
+  &[data-active-layer="working-parent-counties"] .living-wage-labels-layer{
+    @include filter(invert(0.2) brightness(3) contrast(3.5));
+    @include animation(labelsToWhite 1s);
+  }
+
+  // .leaflet-tile{
+  //   filter:blur(10px);
+  //   opacity: 0;
+  //   transform: rotate( 0deg ) scale(0);
+  // }
+  // .leaflet-tile.leaflet-tile-loaded{
+  //   filter:blur(0);
+  //   opacity: 1;
+  //   transform: rotate( 360deg ) scale(1);
+  //   transition:.8s all ease-in;
+  // }
+}
+
+@include keyframes(labelsToWhite) {
+  0% {
+    @include filter(invert(0) brightness(1) contrast(1));
+  }
+  100% {
+    @include filter(invert(0.2) brightness(3) contrast(3.5));
+  }
+}
+
+@include keyframes(labelsToBlack) {
+  0% {
+    @include filter(invert(0.2) brightness(3) contrast(3.5));
+  }
+  100% {
+    @include filter(invert(0) brightness(1) contrast(1));
+  }
 }

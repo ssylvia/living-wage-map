@@ -1,12 +1,23 @@
 @import "header";
+@import "statisticsPane";
 
 .info-pane{
   background-color: $mainBackground;
   width: 25%;
-  max-width: 600px;
-  min-width: 450px;
+  height: 100%;
+  max-width: 450px;
+  min-width: 350px;
 
-  .intro-text{
-    padding: 25px;
+  .main{
+    overflow: auto;
   }
+
+  .intro-text {
+    padding: 25px 25px 0;
+  }
+
+  .statistics-pane{
+    padding: 0 25px 25px;
+  }
+
 }

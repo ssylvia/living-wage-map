@@ -27,30 +27,52 @@ define(['jquery',
     // Main living wage invisible data layer
     internals.config.livingWageDataLayer = L.esri.featureLayer({
       url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
-      // style: function(ftr){
-      //   return {
-      //     stroke: false,
-      //     fill: false
-      //   };
-      // },
+      style: function(ftr){
+        return {
+          opacity: 0,
+          fillOpacity: 0
+        };
+      },
       simplifyFactor: 0.5
     });
 
     // Basemap layers
-    internals.basemapLayers = {
+    internals.config.basemapLayers = {
       grayBasemap: L.esri.basemapLayer('Gray',{
         detectRetina: true,
         zIndex: 0
+      }),
+      labels: L.esri.tiledMapLayer({
+        url: 'http://arcgis.storymaps.esri.com/ArcGIS/rest/services/Diabetes/USA_State_County_Annotation/MapServer',
+        // detectRetina: true,
+        useCors: false,
+        zIndex: 2
       })
     };
 
     internals.config.livingWageLayers = {
-      singleAdult: {
-        layerObj: L.esri.tiledMapLayer({
-          url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_Counties_1A_Tiled/MapServer',
-          detectRetina: true,
-          zIndex: 1
-        })
+      counties: {
+        singleAdult: {
+          layerObj: L.esri.tiledMapLayer({
+            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageSingleAdultbyCounty_Tiled/MapServer',
+            detectRetina: true,
+            zIndex: 1
+          })
+        },
+        singleParent: {
+          layerObj: L.esri.tiledMapLayer({
+            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageSingleParentsOneChildbyCounty_Tiled/MapServer',
+            detectRetina: true,
+            zIndex: 1
+          })
+        },
+        workingParent: {
+          layerObj: L.esri.tiledMapLayer({
+            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageParentsOneSpouseTwoChildrenbyCounty_Tiled/MapServer',
+            detectRetina: true,
+            zIndex: 1
+          })
+        }
       }
     };
 
@@ -58,11 +80,12 @@ define(['jquery',
     internals.config.map = {
       leafletOptions: {
         layers: [
-          internals.basemapLayers.grayBasemap,
-          internals.config.livingWageLayers.singleAdult.layerObj,
+          internals.config.basemapLayers.grayBasemap,
+          internals.config.livingWageLayers.counties.workingParent.layerObj,
+          internals.config.basemapLayers.labels,
           internals.config.livingWageDataLayer
         ],
-        maxBounds: [[72,-60],[13,-182]]
+        maxBounds: [[72,-40],[13,-182]]
       },
       initialBounds: [[50.2,-66],[24.3,-127.7]]
     };

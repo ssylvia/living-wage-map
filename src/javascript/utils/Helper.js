@@ -30,6 +30,10 @@ define(['jquery'],
         internals.calculateRegionLayout();
         $(window).resize(internals.calculateRegionLayout);
       };
+
+      this.resetRegionLayout = function(){
+        internals.calculateRegionLayout();
+      };
     };
 
 });

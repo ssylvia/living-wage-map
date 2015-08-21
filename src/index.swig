@@ -66,14 +66,95 @@
           <a href="//esri.com" target="_blank" class="logo region-right"></a>
         </div>
         <div class="main region-center">
-          <div class="intro-text region-top">
+
+          <div class="intro-text">
             <h1>The <span class="callout"><strong>Living Wage</strong></span> Map</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio adipisci quisquam aspernatur, vitae molestiae quo odit! Nisi amet animi reiciendis. Distinctio vitae quis quae minus iure odio et sed aperiam voluptas voluptate velit sunt id quos quidem eaque nesciunt doloribus reiciendis tempora, nulla eum libero. Ea, expedita quidem itaque quibusdam qui ducimus enim sapiente aperiam at porro accusamus officiis dolorem, voluptatibus debitis labore ipsam perspiciatis adipisci iusto placeat. Magnam dolores facilis, eaque qui! Consequuntur eveniet reprehenderit tempora deleniti explicabo illum qui, enim ducimus. Quia ex asperiores recusandae dolore temporibus dolorum earum neque hic assumenda excepturi eaque animi, rerum doloremque voluptatem.</p>
+          </div>
+
+          <div class="statistics-pane">
+
+            <div class="headings">
+              <h4 class="location-name"></h4>
+              <table class="wage-headings">
+                <tbody>
+                  <tr>
+                    <td class="living-wage-col">
+                      <h6 class="wage-heading">Living<br>Wage</h6>
+                    </td>
+                    <td class="minimum-wage-col">
+                      <h6 class="wage-heading">Minimum<br>Wage</h6>
+                    </td>
+                    <td class="wage-gap-col">
+                      <h6 class="wage-heading">The<br>Gap</h6>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!--/headings-->
+
+            <div class="working-parent wage-group active">
+              <h5 class="class-heading">Parent with Spouse and Two Kids</h5>
+              <table class="stats">
+                <tbody>
+                  <tr>
+                    <td class="living-wage-col">
+                      <p class="stat-value"></p>
+                    </td>
+                    <td class="minimum-wage-col">
+                      <p class="stat-value"></p>
+                    </td>
+                    <td class="wage-gap-col">
+                      <p class="stat-value"></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!--/working-parent-->
+
+            <div class="single-parent wage-group">
+              <h5 class="class-heading">Single Parent with One Child</h5>
+              <table class="stats">
+                <tbody>
+                  <tr>
+                    <td class="living-wage-col">
+                      <p class="stat-value"></p>
+                    </td>
+                    <td class="minimum-wage-col">
+                      <p class="stat-value"></p>
+                    </td>
+                    <td class="wage-gap-col">
+                      <p class="stat-value"></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!--/single-parent-->
+
+            <div class="single-adult wage-group">
+              <h5 class="class-heading">Single Adult</h5>
+              <table class="stats">
+                <tbody>
+                  <tr>
+                    <td class="living-wage-col">
+                      <p class="stat-value"></p>
+                    </td>
+                    <td class="minimum-wage-col">
+                      <p class="stat-value"></p>
+                    </td>
+                    <td class="wage-gap-col">
+                      <p class="stat-value"></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!--/single-adult-->
+
           </div>
         </div>
       </div>
 
-      <div id="map" class="map region-center"></div>
+      <div id="map" class="map region-center" data-active-layer="working-parent-counties"></div>
     </div><!--/content-->
 
   </div>

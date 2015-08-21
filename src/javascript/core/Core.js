@@ -2,12 +2,14 @@ define(['jquery',
   'app/utils/Helper',
   'app/core/Data',
   'app/ui/Intro',
-  'app/ui/Map'],
+  'app/ui/Map',
+  'app/ui/StatisticsPane'],
   function($,
     Helper,
     Data,
     Intro,
-    Map){
+    Map,
+    StatisticsPane){
 
     var internals = {
       appLoaded: false,
@@ -16,7 +18,8 @@ define(['jquery',
 
     internals.loadedComponents = {
       intro: false,
-      map: false
+      map: false,
+      statisticsPane: false
     };
 
     internals.init = function(){
@@ -26,6 +29,9 @@ define(['jquery',
       // initialize components
       internals.loadIntro();
       internals.loadMap();
+      internals.loadStatisticsPane();
+
+      $(internals.data).on('select-class',internals.selectClass);
     };
 
     internals.loadIntro = function(){
@@ -52,11 +58,36 @@ define(['jquery',
       map.init();
     };
 
+    internals.loadStatisticsPane = function(){
+      var statisticsPane = internals.statisticsPane = new StatisticsPane({
+        data: internals.data
+      });
+      $(statisticsPane).on('load',function(){
+        internals.loadedComponents.statisticsPane = true;
+        internals.appReady();
+      });
+      statisticsPane.init();
+    };
+
+    internals.load = function(){
+      var map = internals.map = new Map({
+        data: internals.data,
+        config: internals.data.getConfig('map')
+      });
+      $(map).on('load',function(){
+        internals.loadedComponents.map = true;
+        internals.appReady();
+      });
+      map.init();
+    };
+
     internals.appReady = function(){
       var ready = internals.checkReadyState();
 
       if (!internals.appLoaded && ready){
         internals.appLoaded = true;
+
+        internals.helper.resetRegionLayout();
 
         // TODO: move to button action
         setTimeout(function(){
@@ -76,6 +107,10 @@ define(['jquery',
       });
 
       return ready;
+    };
+
+    internals.selectClass = function(e){
+      internals.map.toggleLayers(e.layers.current,e.layers.previous,500);
     };
 
     (function(){
