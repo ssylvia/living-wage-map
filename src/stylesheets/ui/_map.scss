@@ -4,12 +4,16 @@
 .map {
   background-color: $contentBackground;
 
+  &.leaflet-container .leaflet-clickable{
+    cursor: none !important;
+  }
+
   .living-wage-labels-layer{
     @include animation(labelsToBlack 2s);
   }
 
   &[data-active-layer="working-parent-counties"] .living-wage-labels-layer{
-    @include filter(invert(0.2) brightness(3) contrast(3.5));
+    @include filter(invert(1) brightness(1.25) contrast(1.1));
     @include animation(labelsToWhite 1s);
   }
 
@@ -31,13 +35,13 @@
     @include filter(invert(0) brightness(1) contrast(1));
   }
   100% {
-    @include filter(invert(0.2) brightness(3) contrast(3.5));
+    @include filter(invert(1) brightness(1.25) contrast(1.1));
   }
 }
 
 @include keyframes(labelsToBlack) {
   0% {
-    @include filter(invert(0.2) brightness(3) contrast(3.5));
+    @include filter(invert(1) brightness(1.25) contrast(1.1));
   }
   100% {
     @include filter(invert(0) brightness(1) contrast(1));

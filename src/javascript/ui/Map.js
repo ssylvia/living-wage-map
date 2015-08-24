@@ -31,7 +31,6 @@ define(['jquery',
         });
       }
       if (hide && hide.setOpacity){
-        // internals.map.removeLayer(hide);
         internals.fadeLayer({
           layer: hide,
           finalOpacity: 0,
@@ -49,6 +48,10 @@ define(['jquery',
 
       var settings =  $.extend(true,defaults,options);
 
+      if (settings.layer.fadeTimeout){
+        clearTimeout(settings.layer.fadeTimeout);
+      }
+
       if (settings.layer.options.opacity || settings.layer.options.opacity === 0){
 
         if (settings.removeIfInvisible && settings.finalOpacity <= 0 && settings.layer.options.opacity <= 0){
@@ -62,7 +65,7 @@ define(['jquery',
           settings.opacityChange = settings.opacityChange || (settings.finalOpacity - settings.layer.options.opacity) / ((settings.duration/1000) * 60);
 
           settings.layer.setOpacity(settings.layer.options.opacity + settings.opacityChange);
-          setTimeout(function(){
+          settings.layer.fadeTimeout = setTimeout(function(){
             internals.fadeLayer(settings);
           },settings.delay);
         }

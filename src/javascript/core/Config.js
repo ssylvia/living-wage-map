@@ -21,20 +21,46 @@ define(['jquery',
         workingParentMinimumWage: 'F1A1S2C__5',
         workingParentLivingWage: 'F1A1S2C__3',
         workingParentWageGap: 'F1A1S2C_Ga'
+      },
+      metro: {
+        locationName: 'cbsa_name',
+        stateName: 'state',
+        singleAdultMinimumWage: 'F1A_minw_1',
+        singleAdultLivingWage: 'F1A_inco_3',
+        singleAdultWageGap: 'F1A_Gap',
+        singleParentMinimumWage: 'F1A1C_mi_1',
+        singleParentLivingWage: 'F1A1C_in_3',
+        singleParentWageGap: 'F1A1C_Gap',
+        workingParentMinimumWage: 'F1A1S2C__5',
+        workingParentLivingWage: 'F1A1S2C__3',
+        workingParentWageGap: 'F1A1S2C_Ga'
       }
     };
 
     // Main living wage invisible data layer
-    internals.config.livingWageDataLayer = L.esri.featureLayer({
-      url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
-      style: function(ftr){
-        return {
-          opacity: 0,
-          fillOpacity: 0
-        };
-      },
-      simplifyFactor: 0.5
-    });
+    internals.config.livingWageDataLayer = {
+      counties: L.esri.featureLayer({
+        url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
+        style: function(ftr){
+          return {
+            opacity: 0,
+            fillOpacity: 0
+          };
+        },
+        simplifyFactor: 0.5
+      }),
+      metro: L.esri.featureLayer({
+        url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_Metro_Select/FeatureServer/0',
+        where: 'top100=1',
+        style: function(ftr){
+          return {
+            opacity: 0,
+            fillOpacity: 0
+          };
+        },
+        simplifyFactor: 0.5
+      })
+    };
 
     // Basemap layers
     internals.config.basemapLayers = {
@@ -73,6 +99,29 @@ define(['jquery',
             zIndex: 1
           })
         }
+      },
+      metro: {
+        singleAdult: {
+          layerObj: L.esri.tiledMapLayer({
+            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleAdultsbyMetro_Tiled/MapServer',
+            detectRetina: true,
+            zIndex: 1
+          })
+        },
+        singleParent: {
+          layerObj: L.esri.tiledMapLayer({
+            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleParentsOneChildbyMetro_Tiled/MapServer',
+            detectRetina: true,
+            zIndex: 1
+          })
+        },
+        workingParent: {
+          layerObj: L.esri.tiledMapLayer({
+            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleParentsSupportingSpouseTwoChildrenbyMetro_Tiled/MapServer',
+            detectRetina: true,
+            zIndex: 1
+          })
+        }
       }
     };
 
@@ -83,7 +132,7 @@ define(['jquery',
           internals.config.basemapLayers.grayBasemap,
           internals.config.livingWageLayers.counties.workingParent.layerObj,
           internals.config.basemapLayers.labels,
-          internals.config.livingWageDataLayer
+          internals.config.livingWageDataLayer.counties
         ],
         maxBounds: [[72,-40],[13,-182]]
       },

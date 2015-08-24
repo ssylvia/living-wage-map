@@ -19,7 +19,8 @@ define(['jquery',
     internals.loadedComponents = {
       intro: false,
       map: false,
-      statisticsPane: false
+      statisticsPane: false,
+      data: false
     };
 
     internals.init = function(){
@@ -32,6 +33,11 @@ define(['jquery',
       internals.loadStatisticsPane();
 
       $(internals.data).on('select-class',internals.selectClass);
+
+      $(internals.data).on('data-ready',function(){
+        internals.loadedComponents.data = true;
+        internals.appReady();
+      });
     };
 
     internals.loadIntro = function(){
@@ -90,9 +96,9 @@ define(['jquery',
         internals.helper.resetRegionLayout();
 
         // TODO: move to button action
-        setTimeout(function(){
+        // setTimeout(function(){
           internals.intro.hide();
-        },2000);
+        // },2000);
       }
     };
 
@@ -101,7 +107,7 @@ define(['jquery',
       var components = internals.loadedComponents;
 
       $.each(components,function(){
-        if (!this){
+        if (!this.valueOf()){
           ready = false;
         }
       });

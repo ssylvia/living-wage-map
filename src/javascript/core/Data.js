@@ -6,92 +6,120 @@ define(['jquery',
     var internals = {
       config: new Config(),
       firstLoad: true,
-      countyDisplay: true,
+      countyDisplay: false,
       selectedClass: 'workingParent',
-      extremes: {
-        // min: false,
-        max: false
-      },
       layers: {
         previous: false,
         current: false
-      }
+      },
+      dataLayers: {}
     };
 
-    internals.layers.current = internals.config.get('livingWageLayers').counties.workingParent.layerObj;
-
-    internals.dataLayer = internals.config.get('livingWageDataLayer');
     internals.dataFields = internals.config.get('dataFields');
-    internals.countyFields = internals.dataFields.counties;
 
-    internals.dataLayer.on('load',function(){
+    internals.changeDataLayer = function(layer){
+      var firstLoad = true;
+      internals.dataLayers.previous = internals.dataLayers.current ? internals.dataLayers.current : false;
+      internals.dataLayers.current = layer;
 
-      if (internals.firstLoad){
-        $(internals.config.get('basemapLayers').labels.getContainer()).addClass('living-wage-labels-layer');
-        internals.firstLoad = false;
-        internals.dataLayer.eachFeature(function(ftr){
-          ftr.on('mouseover',function(){
-            internals.select(ftr.feature);
-          });
+      internals.selectClass(internals.selectedClass);
 
-          internals.calculateExtremes(ftr.feature);
+      internals.dataLayers.current.on('load',function(){
 
-          if (ftr.feature.properties[internals.countyFields.stateName] === 'District of Columbia'){
-            internals.select(ftr.feature);
+        if (firstLoad){
+
+          firstLoad = false;
+          if (internals.firstLoad){
+            internals.firstLoad = false;
+            $(internals.config.get('basemapLayers').labels.getContainer()).addClass('living-wage-labels-layer');
           }
-        });
-      }
-    });
+
+          internals.dataLayers.current.eachFeature(function(ftr){
+
+            ftr.on('mouseover',function(){
+              ftr.setStyle({
+                opacity: 1,
+                color: '#333',
+                weight: 2
+              });
+              internals.select(ftr.feature);
+            });
+
+            ftr.on('mouseout',function(){
+              ftr.setStyle({
+                opacity: 0
+              });
+            });
+
+            ftr.on('mousemove',function(e){
+              internals.onHoverPostionChange(e.containerPoint);
+            });
+
+            internals.extremes = {
+              // min: false,
+              max: false
+            };
+            internals.calculateExtremes(ftr.feature);
+
+            if (internals.countyDisplay && ftr.feature.properties[internals.dataFields.counties.stateName] === 'District of Columbia'){
+              internals.select(ftr.feature);
+            }
+            else if (!internals.countyDisplay && ftr.feature.properties[internals.dataFields.metro.stateName] === 'District of Columbia'){
+              internals.select(ftr.feature);
+            }
+            internals.onDataReady();
+          });
+        }
+      });
+    };
 
     internals.calculateExtremes = function(ftr){
       // if (!internals.extremes.min){
-      //   internals.extremes.min = ftr.properties[internals.countyFields.singleAdultMinimumWage];
+      //   internals.extremes.min = ftr.properties[internals.dataFields.counties.singleAdultMinimumWage];
       // }
       if (!internals.extremes.max){
-        internals.extremes.max = ftr.properties[internals.countyFields.singleAdultMinimumWage];
+        internals.extremes.max = ftr.properties[internals.dataFields.counties.singleAdultMinimumWage];
       }
 
       // internals.extremes.min = Math.min(internals.extremes.min,
-      //   ftr.properties[internals.countyFields.singleAdultMinimumWage],
-      //   ftr.properties[internals.countyFields.singleAdultLivingWage],
-      //   ftr.properties[internals.countyFields.singleParentMinimumWage],
-      //   ftr.properties[internals.countyFields.singleParentLivingWage],
-      //   ftr.properties[internals.countyFields.workingParentMinimumWage],
-      //   ftr.properties[internals.countyFields.workingParentLivingWage]);
+      //   ftr.properties[internals.dataFields.counties.singleAdultMinimumWage],
+      //   ftr.properties[internals.dataFields.counties.singleAdultLivingWage],
+      //   ftr.properties[internals.dataFields.counties.singleParentMinimumWage],
+      //   ftr.properties[internals.dataFields.counties.singleParentLivingWage],
+      //   ftr.properties[internals.dataFields.counties.workingParentMinimumWage],
+      //   ftr.properties[internals.dataFields.counties.workingParentLivingWage]);
 
       internals.extremes.max = Math.max(internals.extremes.max,
-        ftr.properties[internals.countyFields.singleAdultMinimumWage],
-        ftr.properties[internals.countyFields.singleAdultLivingWage],
-        ftr.properties[internals.countyFields.singleParentMinimumWage],
-        ftr.properties[internals.countyFields.singleParentLivingWage],
-        ftr.properties[internals.countyFields.workingParentMinimumWage],
-        ftr.properties[internals.countyFields.workingParentLivingWage]);
+        ftr.properties[internals.dataFields.counties.singleAdultMinimumWage],
+        ftr.properties[internals.dataFields.counties.singleAdultLivingWage],
+        ftr.properties[internals.dataFields.counties.singleParentMinimumWage],
+        ftr.properties[internals.dataFields.counties.singleParentLivingWage],
+        ftr.properties[internals.dataFields.counties.workingParentMinimumWage],
+        ftr.properties[internals.dataFields.counties.workingParentLivingWage]);
     };
 
     internals.generateStats = function(ftr){
-      var stats;
-      if (internals.countyDisplay){
-        stats = {
-          location: ftr.properties[internals.countyFields.locationName],
-          state: ftr.properties[internals.countyFields.stateName],
-          locationFull: ftr.properties[internals.countyFields.locationName] + (ftr.properties[internals.countyFields.stateName] === 'District of Columbia' ? '' : (', ' + ftr.properties[internals.countyFields.stateName])),
-          singleAdult: {
-            minimumWage: ftr.properties[internals.countyFields.singleAdultMinimumWage],
-            livingWage: ftr.properties[internals.countyFields.singleAdultLivingWage],
-            wageGap: ftr.properties[internals.countyFields.singleAdultWageGap]
-          },
-          singleParent: {
-            minimumWage: ftr.properties[internals.countyFields.singleParentMinimumWage],
-            livingWage: ftr.properties[internals.countyFields.singleParentLivingWage],
-            wageGap: ftr.properties[internals.countyFields.singleParentWageGap]
-          },
-          workingParent: {
-            minimumWage: ftr.properties[internals.countyFields.workingParentMinimumWage],
-            livingWage: ftr.properties[internals.countyFields.workingParentLivingWage],
-            wageGap: ftr.properties[internals.countyFields.workingParentWageGap]
-          }
-        };
-      }
+      var countyStr = internals.countyDisplay ? 'counties' : 'metro';
+      var stats = {
+        location: ftr.properties[internals.dataFields[countyStr].locationName],
+        state: ftr.properties[internals.dataFields[countyStr].stateName],
+        locationFull: !countyStr ? ftr.properties[internals.dataFields[countyStr].locationName] : ftr.properties[internals.dataFields[countyStr].locationName] + (ftr.properties[internals.dataFields[countyStr].stateName] === 'District of Columbia' ? '' : (', ' + ftr.properties[internals.dataFields[countyStr].stateName])),
+        singleAdult: {
+          minimumWage: ftr.properties[internals.dataFields[countyStr].singleAdultMinimumWage],
+          livingWage: ftr.properties[internals.dataFields[countyStr].singleAdultLivingWage],
+          wageGap: ftr.properties[internals.dataFields[countyStr].singleAdultWageGap]
+        },
+        singleParent: {
+          minimumWage: ftr.properties[internals.dataFields[countyStr].singleParentMinimumWage],
+          livingWage: ftr.properties[internals.dataFields[countyStr].singleParentLivingWage],
+          wageGap: ftr.properties[internals.dataFields[countyStr].singleParentWageGap]
+        },
+        workingParent: {
+          minimumWage: ftr.properties[internals.dataFields[countyStr].workingParentMinimumWage],
+          livingWage: ftr.properties[internals.dataFields[countyStr].workingParentLivingWage],
+          wageGap: ftr.properties[internals.dataFields[countyStr].workingParentWageGap]
+        }
+      };
 
       return stats;
     };
@@ -126,6 +154,17 @@ define(['jquery',
       internals.onSelectClass();
     };
 
+    internals.toggleCounties = function(showCounties){
+      if (showCounties !== internals.countyDisplay && showCounties){
+        internals.countyDisplay = showCounties;
+        internals.changeDataLayer(internals.config.get('livingWageDataLayer').counties);
+      }
+      else if (showCounties !== internals.countyDisplay && !showCounties){
+        internals.countyDisplay = showCounties;
+        internals.changeDataLayer(internals.config.get('livingWageDataLayer').metro);
+      }
+    };
+
     internals.onSelect = function(){
       $(internals.self).trigger({
         type: 'select',
@@ -143,6 +182,21 @@ define(['jquery',
       });
     };
 
+    internals.onDataReady = function(){
+      $(internals.self).trigger('data-ready');
+    };
+
+    internals.onHoverPostionChange = function(point){
+      $(internals.self).trigger({
+        type: 'hover-position-change',
+        hoverPosition: point
+      });
+    };
+
+    (function(){
+      internals.toggleCounties(true);
+    })();
+
     return function (options){
       var defaults = {};
 
@@ -154,6 +208,11 @@ define(['jquery',
       };
 
       this.selectClass = internals.selectClass;
+
+      this.toggleCounties = internals.toggleCounties;
+
+      window.test = internals.toggleCounties;
+      window.foo = internals;
 
     };
 
