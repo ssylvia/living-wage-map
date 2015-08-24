@@ -1,0 +1,87 @@
+@import "compass/css3/animation";
+
+.statistics-pane{
+
+  .location-name{
+    text-transform: capitalize;
+  }
+
+  table{
+    width: 100%;
+  }
+
+  .living-wage-col, .wage-gap-col{
+    width: 33.333%;
+    text-transform: uppercase;
+  }
+
+  .minimum-wage-col{
+    width: 33.334%;
+    text-transform: uppercase;
+  }
+
+  .wage-gap-col h6, .wage-gap-col .stat-value{
+    color: $mainCallout;
+  }
+
+  .wage-gap-col[data-positive-gap="true"] h6, .wage-gap-col[data-positive-gap="true"] .stat-value{
+    color: $secondaryCallout;
+  }
+
+  .wage-headings{
+    margin: 20px 0 10px;
+
+    h6{
+      font-weight: bold;
+    }
+  }
+
+  .wage-group{
+    padding: 10px 0;
+    border-top: 1px solid $mainColor;
+
+    .class-heading, table.stats{
+      opacity: 0.2;
+      @include animation(disabledFade 0.5s);
+    }
+
+    &:hover {
+      .class-heading, table.stats{
+        opacity: 0.4;
+      }
+      cursor: pointer;
+    }
+
+    &.active {
+      .class-heading, table.stats{
+        opacity: 1;
+        @include animation(activeFade 0.5s);
+      }
+    }
+
+    .stat-value{
+      font-weight: bold;
+      font-size: 1.5em;
+      margin: 0;
+    }
+  }
+
+}
+
+@include keyframes(activeFade) {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(disabledFade) {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
