@@ -64,6 +64,7 @@ define(['jquery',
         internals.loadedComponents.map = true;
         internals.appReady();
       });
+
       map.init();
     };
 

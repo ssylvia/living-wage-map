@@ -10,7 +10,6 @@ define(['jquery',
     internals.createMap = function(){
       var map = internals.map = L.map(internals.settings.el,
         internals.settings.config.leafletOptions);
-      window.m =map;
 
       map.on('load',function(){
         internals.onLoad();
@@ -18,14 +17,6 @@ define(['jquery',
 
       if (internals.settings.config.initialBounds){
         map.fitBounds(internals.settings.config.initialBounds);
-      }
-
-      if (internals.settings.includeGeocoder){
-        internals.geocoder = L.esri.Geocoding.Controls.geosearch({
-          allowMultipleResults: false,
-          placeholder: 'City, State or County, State',
-          useMapBounds: true
-        }).addTo(map);
       }
 
     };

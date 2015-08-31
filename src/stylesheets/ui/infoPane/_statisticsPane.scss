@@ -66,6 +66,44 @@
     }
   }
 
+  .content-area{
+    height: 0;
+
+    .graph{
+      height: 100%;
+      width: 100%;
+
+      .living-wage-col, .minimum-wage-col, .wage-gap-col{
+        position: relative;
+      }
+
+      .graph-bar, .graph-bar-spacer{
+        position: absolute;
+        width: 90%;
+      }
+
+      .living-wage-col .graph-bar, .minimum-wage-col .graph-bar{
+        bottom: 0;
+      }
+
+      .living-wage-col .graph-bar{
+        background-color: $highlightBackground;
+      }
+
+      .minimum-wage-col .graph-bar{
+        background-color: $mainColor;
+      }
+
+      .wage-gap-col .graph-bar{
+        background-color: $mainCallout;
+      }
+
+      .wage-gap-col[data-positive-gap="true"] .graph{
+        background-color: $secondaryCallout;
+      }
+    }
+  }
+
 }
 
 @include keyframes(activeFade) {

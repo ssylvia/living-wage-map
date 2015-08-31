@@ -12,6 +12,11 @@ define(['jquery',
         previous: false,
         current: false
       },
+      extremes: {
+        min: false,
+        max: false,
+        useExtremes: false
+      },
       dataLayers: {}
     };
 
@@ -21,6 +26,8 @@ define(['jquery',
       var firstLoad = true;
       internals.dataLayers.previous = internals.dataLayers.current ? internals.dataLayers.current : false;
       internals.dataLayers.current = layer;
+      internals.extremes.min = false;
+      internals.extremes.max = false;
 
       internals.onBeforeDataLayerChange();
 
@@ -59,10 +66,6 @@ define(['jquery',
               internals.onHoverPostionChange(e.containerPoint);
             });
 
-            internals.extremes = {
-              // min: false,
-              max: false
-            };
             internals.calculateExtremes(ftr.feature);
 
             if (internals.countyDisplay && ftr.feature.properties[internals.dataFields.counties.stateName] === 'District of Columbia'){
@@ -172,6 +175,7 @@ define(['jquery',
     internals.onSelect = function(){
       $(internals.self).trigger({
         type: 'select',
+        extremes: internals.extremes,
         selectedClass: internals.selectedClass,
         countyDisplay: internals.countyDisplay,
         feature: internals.currentFtr,
@@ -215,6 +219,10 @@ define(['jquery',
     (function(){
       internals.toggleCounties(true);
     })();
+
+    window.useExtremes = function(arg){
+      internals.extremes.useExtremes = arg;
+    };
 
     return function (options){
       var defaults = {};

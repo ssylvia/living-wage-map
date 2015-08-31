@@ -94,60 +94,117 @@
             </div><!--/headings-->
 
             <div class="working-parent wage-group active">
-              <h5 class="class-heading">Parent with Spouse and Two Kids</h5>
-              <table class="stats">
-                <tbody>
-                  <tr>
-                    <td class="living-wage-col">
-                      <p class="stat-value"></p>
-                    </td>
-                    <td class="minimum-wage-col">
-                      <p class="stat-value"></p>
-                    </td>
-                    <td class="wage-gap-col">
-                      <p class="stat-value"></p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="heading-area">
+                <h5 class="class-heading">Parent with Spouse and Two Kids</h5>
+                <table class="stats">
+                  <tbody>
+                    <tr>
+                      <td class="living-wage-col">
+                        <p class="stat-value"></p>
+                      </td>
+                      <td class="minimum-wage-col">
+                        <p class="stat-value"></p>
+                      </td>
+                      <td class="wage-gap-col">
+                        <p class="stat-value"></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="content-area">
+                <table class="graph">
+                  <tbody>
+                    <tr>
+                      <td class="living-wage-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                      <td class="minimum-wage-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                      <td class="wage-gap-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div><!--/working-parent-->
 
             <div class="single-parent wage-group">
-              <h5 class="class-heading">Single Parent with One Child</h5>
-              <table class="stats">
-                <tbody>
-                  <tr>
-                    <td class="living-wage-col">
-                      <p class="stat-value"></p>
-                    </td>
-                    <td class="minimum-wage-col">
-                      <p class="stat-value"></p>
-                    </td>
-                    <td class="wage-gap-col">
-                      <p class="stat-value"></p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="heading-area">
+                <h5 class="class-heading">Single Parent with One Child</h5>
+                <table class="stats">
+                  <tbody>
+                    <tr>
+                      <td class="living-wage-col">
+                        <p class="stat-value"></p>
+                      </td>
+                      <td class="minimum-wage-col">
+                        <p class="stat-value"></p>
+                      </td>
+                      <td class="wage-gap-col">
+                        <p class="stat-value"></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="content-area">
+                <table class="graph">
+                  <tbody>
+                    <tr>
+                      <td class="living-wage-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                      <td class="minimum-wage-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                      <td class="wage-gap-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div><!--/single-parent-->
 
             <div class="single-adult wage-group">
-              <h5 class="class-heading">Single Adult</h5>
-              <table class="stats">
-                <tbody>
-                  <tr>
-                    <td class="living-wage-col">
-                      <p class="stat-value"></p>
-                    </td>
-                    <td class="minimum-wage-col">
-                      <p class="stat-value"></p>
-                    </td>
-                    <td class="wage-gap-col">
-                      <p class="stat-value"></p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="heading-area">
+                <h5 class="class-heading">Single Adult</h5>
+                <table class="stats">
+                  <tbody>
+                    <tr>
+                      <td class="living-wage-col">
+                        <p class="stat-value"></p>
+                      </td>
+                      <td class="minimum-wage-col">
+                        <p class="stat-value"></p>
+                      </td>
+                      <td class="wage-gap-col">
+                        <p class="stat-value"></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="content-area">
+                <table class="graph">
+                  <tbody>
+                    <tr>
+                      <td class="living-wage-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                      <td class="minimum-wage-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                      <td class="wage-gap-col">
+                        <div class="graph-bar"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div><!--/single-adult-->
 
           </div>
