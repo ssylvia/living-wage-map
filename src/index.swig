@@ -154,7 +154,13 @@
         </div>
       </div>
 
-      <div id="map" class="map region-center" data-active-layer="working-parent-counties"></div>
+      <div id="map" class="map region-center" data-active-layer="working-parent-counties">
+        <div class="tooltip-wrapper">
+          <div class="top-arrow"></div>
+          <div class="tooltip"></div>
+          <div class="bottom-arrow"></div>
+        </div>
+      </div>
     </div><!--/content-->
 
   </div>

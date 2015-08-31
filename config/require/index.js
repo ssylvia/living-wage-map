@@ -16,6 +16,7 @@ exports.get = internals.Require = function (key, criteria) {
       'velocity': 'lib/velocity/velocity',
       'leaflet': 'lib/leaflet/leaflet',
       'esri-leaflet': 'lib/esri-leaflet/dist/esri-leaflet',
+      'esri-leaflet-geocoder': 'lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder',
       // Require Plugins
       'text': 'lib/text/text',
       'css': 'lib/require-css/css',
@@ -31,6 +32,11 @@ exports.get = internals.Require = function (key, criteria) {
         exports: 'L'
       },
       'esri-leaflet': {
+        deps: ['leaflet'],
+        exports: 'L'
+      },
+      'esri-leaflet-geocoder': {
+        deps: ['leaflet','esri-leaflet','css!lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css'],
         exports: 'L'
       }
     }

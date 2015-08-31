@@ -1,0 +1,45 @@
+@import "compass/css3/filter";
+
+.tooltip-wrapper{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  @include filter(drop-shadow(1px 1px 3px black));
+
+  .tooltip{
+    background-color: $mainBackground;
+    text-align: center;
+    max-width: 200px;
+    padding: 5px;
+  }
+
+  .top-arrow{
+    width: 0;
+    height: 0;
+    margin: 10px 0 0 -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid $mainBackground;
+    display: none;
+  }
+
+  .bottom-arrow{
+    width: 0;
+    height: 0;
+    margin-left: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $mainBackground;
+  }
+
+  &.display-under .bottom-arrow{
+    display: none;
+  }
+
+  &.display-under .top-arrow{
+    display: block;
+  }
+
+}

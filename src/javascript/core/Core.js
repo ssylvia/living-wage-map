@@ -3,12 +3,14 @@ define(['jquery',
   'app/core/Data',
   'app/ui/Intro',
   'app/ui/Map',
+  'app/ui/Tooltip',
   'app/ui/StatisticsPane'],
   function($,
     Helper,
     Data,
     Intro,
     Map,
+    Tooltip,
     StatisticsPane){
 
     var internals = {
@@ -20,6 +22,7 @@ define(['jquery',
       intro: false,
       map: false,
       statisticsPane: false,
+      tooltip: false,
       data: false
     };
 
@@ -30,14 +33,14 @@ define(['jquery',
       // initialize components
       internals.loadIntro();
       internals.loadMap();
+      internals.loadTooltip();
       internals.loadStatisticsPane();
 
+      // Data Events
+      $(internals.data).on('data-ready',internals.dataReady);
       $(internals.data).on('select-class',internals.selectClass);
+      $(internals.data).on('before-data-layer-change',internals.toggleDataLayers);
 
-      $(internals.data).on('data-ready',function(){
-        internals.loadedComponents.data = true;
-        internals.appReady();
-      });
     };
 
     internals.loadIntro = function(){
@@ -64,6 +67,17 @@ define(['jquery',
       map.init();
     };
 
+    internals.loadTooltip = function(){
+      var tooltip = internals.tooltip = new Tooltip({
+        data: internals.data
+      });
+      $(tooltip).on('load',function(){
+        internals.loadedComponents.tooltip = true;
+        internals.appReady();
+      });
+      tooltip.init();
+    };
+
     internals.loadStatisticsPane = function(){
       var statisticsPane = internals.statisticsPane = new StatisticsPane({
         data: internals.data
@@ -75,16 +89,9 @@ define(['jquery',
       statisticsPane.init();
     };
 
-    internals.load = function(){
-      var map = internals.map = new Map({
-        data: internals.data,
-        config: internals.data.getConfig('map')
-      });
-      $(map).on('load',function(){
-        internals.loadedComponents.map = true;
-        internals.appReady();
-      });
-      map.init();
+    internals.dataReady = function(){
+      internals.loadedComponents.data = true;
+      internals.appReady();
     };
 
     internals.appReady = function(){
@@ -96,9 +103,7 @@ define(['jquery',
         internals.helper.resetRegionLayout();
 
         // TODO: move to button action
-        // setTimeout(function(){
-          internals.intro.hide();
-        // },2000);
+        internals.intro.hide();
       }
     };
 
@@ -117,6 +122,10 @@ define(['jquery',
 
     internals.selectClass = function(e){
       internals.map.toggleLayers(e.layers.current,e.layers.previous,500);
+    };
+
+    internals.toggleDataLayers = function(e){
+      internals.map.toggleLayers(e.dataLayers.current,e.dataLayers.previous,0);
     };
 
     (function(){

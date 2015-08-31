@@ -1,6 +1,7 @@
 define(['jquery',
   'leaflet',
-  'esri-leaflet'],
+  'esri-leaflet',
+  'esri-leaflet-geocoder'],
   function($,
     L){
 
@@ -9,6 +10,7 @@ define(['jquery',
     internals.createMap = function(){
       var map = internals.map = L.map(internals.settings.el,
         internals.settings.config.leafletOptions);
+      window.m =map;
 
       map.on('load',function(){
         internals.onLoad();
@@ -16,6 +18,14 @@ define(['jquery',
 
       if (internals.settings.config.initialBounds){
         map.fitBounds(internals.settings.config.initialBounds);
+      }
+
+      if (internals.settings.includeGeocoder){
+        internals.geocoder = L.esri.Geocoding.Controls.geosearch({
+          allowMultipleResults: false,
+          placeholder: 'City, State or County, State',
+          useMapBounds: true
+        }).addTo(map);
       }
 
     };
@@ -30,12 +40,18 @@ define(['jquery',
           duration: duration
         });
       }
+      else if(show){
+        internals.map.addLayer(show);
+      }
       if (hide && hide.setOpacity){
         internals.fadeLayer({
           layer: hide,
           finalOpacity: 0,
           duration: duration
         });
+      }
+      else if(hide){
+        internals.map.removeLayer(hide);
       }
     };
 
@@ -80,7 +96,8 @@ define(['jquery',
 
     return function (options){
       var defaults = {
-        el: 'map'
+        el: 'map',
+        includeGeocoder: true
       };
 
       internals.settings = $.extend(true,defaults,options);

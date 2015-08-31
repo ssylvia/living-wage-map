@@ -22,6 +22,8 @@ define(['jquery',
       internals.dataLayers.previous = internals.dataLayers.current ? internals.dataLayers.current : false;
       internals.dataLayers.current = layer;
 
+      internals.onBeforeDataLayerChange();
+
       internals.selectClass(internals.selectedClass);
 
       internals.dataLayers.current.on('load',function(){
@@ -42,6 +44,7 @@ define(['jquery',
                 color: '#333',
                 weight: 2
               });
+              internals.onTooltipShow();
               internals.select(ftr.feature);
             });
 
@@ -49,6 +52,7 @@ define(['jquery',
               ftr.setStyle({
                 opacity: 0
               });
+              internals.onTooltipHide();
             });
 
             ftr.on('mousemove',function(e){
@@ -184,6 +188,21 @@ define(['jquery',
 
     internals.onDataReady = function(){
       $(internals.self).trigger('data-ready');
+    };
+
+    internals.onBeforeDataLayerChange = function(){
+      $(internals.self).trigger({
+        type: 'before-data-layer-change',
+        dataLayers: internals.dataLayers
+      });
+    };
+
+    internals.onTooltipHide = function(){
+      $(internals.self).trigger('tooltip-hide');
+    };
+
+    internals.onTooltipShow = function(){
+      $(internals.self).trigger('tooltip-show');
     };
 
     internals.onHoverPostionChange = function(point){

@@ -72,6 +72,7 @@ define(['jquery',
         url: 'http://arcgis.storymaps.esri.com/ArcGIS/rest/services/Diabetes/USA_State_County_Annotation/MapServer',
         // detectRetina: true,
         useCors: false,
+        maxNativeZoom: 9,
         zIndex: 2
       })
     };
@@ -134,6 +135,8 @@ define(['jquery',
           internals.config.basemapLayers.labels,
           internals.config.livingWageDataLayer.counties
         ],
+        minZoom: 4,
+        maxZoom: 10,
         maxBounds: [[72,-40],[13,-182]]
       },
       initialBounds: [[50.2,-66],[24.3,-127.7]]
