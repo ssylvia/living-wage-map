@@ -12,6 +12,7 @@ $fontSize: 1em;
 
     &:hover{
       color: $headerLinkActive;
+      text-decoration: underline;
     }
   }
 
@@ -26,11 +27,20 @@ $fontSize: 1em;
   }
 
   .smLink{
-    padding-left: 25px;
+    text-indent: 25px;
   }
 
-  .social{
+  .share{
     text-align: center;
+
+    .share-icon{
+      cursor: pointer;
+      color: $headerLink;
+      line-height: ($headerHeight - $fontSize + 1);
+      &:hover{
+        color: $headerLinkActive;
+      }
+    }
   }
 
   .logo{

@@ -1,5 +1,5 @@
-define(['jquery'],
-  function($){
+define(['jquery','app/utils/SocialSharing'],
+  function($,SocialSharing){
 
     var internals = {};
 
@@ -25,6 +25,8 @@ define(['jquery'],
 
       internals.settings = $.extend(true,defaults,options);
       internals.self = this;
+
+      SocialSharing.addClickEvents();
 
       this.enableRegionLayout = function(){
         internals.calculateRegionLayout();

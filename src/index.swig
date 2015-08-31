@@ -61,7 +61,7 @@
           <div class="share region-center">
             <span class="share-icon icon-facebook"></span>
             <span class="share-icon icon-twitter"></span>
-            <span class="share-icon icon-link"></span>
+            {# <span class="share-icon icon-link"></span> #}
           </div>
           <a href="//esri.com" target="_blank" class="logo region-right"></a>
         </div>
