@@ -126,6 +126,8 @@ define(['jquery',
     };
 
     internals.toggleDataLayers = function(e){
+      console.log(e);
+      internals.map.toggleLayers(e.labelsLayers.current,e.labelsLayers.previous,500);
       internals.map.toggleLayers(e.dataLayers.current,e.dataLayers.previous,0);
     };
 

@@ -17,7 +17,8 @@ define(['jquery',
         max: false,
         useExtremes: false
       },
-      dataLayers: {}
+      dataLayers: {},
+      labelsLayers: {}
     };
 
     internals.dataFields = internals.config.get('dataFields');
@@ -26,6 +27,8 @@ define(['jquery',
       var firstLoad = true;
       internals.dataLayers.previous = internals.dataLayers.current ? internals.dataLayers.current : false;
       internals.dataLayers.current = layer;
+      internals.labelsLayers.previous = internals.labelsLayers.current ? internals.labelsLayers.current : false;
+      internals.labelsLayers.current = internals.countyDisplay ? internals.config.get('basemapLayers').labels : internals.config.get('basemapLayers').grayLabels;
       internals.extremes.min = false;
       internals.extremes.max = false;
 
@@ -197,7 +200,8 @@ define(['jquery',
     internals.onBeforeDataLayerChange = function(){
       $(internals.self).trigger({
         type: 'before-data-layer-change',
-        dataLayers: internals.dataLayers
+        dataLayers: internals.dataLayers,
+        labelsLayers: internals.labelsLayers
       });
     };
 

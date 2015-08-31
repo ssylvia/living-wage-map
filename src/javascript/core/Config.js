@@ -68,6 +68,10 @@ define(['jquery',
         detectRetina: true,
         zIndex: 0
       }),
+      grayLabels: L.esri.basemapLayer('GrayLabels',{
+        detectRetina: true,
+        zIndex: 2
+      }),
       labels: L.esri.tiledMapLayer({
         url: 'http://arcgis.storymaps.esri.com/ArcGIS/rest/services/Diabetes/USA_State_County_Annotation/MapServer',
         // detectRetina: true,

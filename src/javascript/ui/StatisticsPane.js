@@ -89,17 +89,17 @@ define(['jquery'],
       internals.workingParentLivingWage.html(internals.formatMoney(e.statistics.workingParent.livingWage,true));
       internals.workingParentWageGap.html(internals.formatMoney(e.statistics.workingParent.wageGap,true));
       // Chart
-      var wpMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.workingParent.minimumWage,e.statistics.workingParent.livingWage);
-      var wpMinWage = Math.floor((e.statistics.workingParent.minimumWage/wpMax)*100);
-      var wpLivWage = Math.floor((e.statistics.workingParent.livingWage/wpMax)*100);
-      var wpGap = Math.abs(wpLivWage - wpMinWage);
-      var wpSpacer = wpLivWage >= wpMinWage ? wpMinWage : wpLivWage;
-      internals.workingParentMinimumWageBar.css('height', wpMinWage + '%');
-      internals.workingParentLivingWageBar.css('height', wpLivWage + '%');
-      internals.workingParentWageGapBar.css({
-        'height': wpGap + '%',
-        'bottom': wpSpacer + '%'
-      });
+      // var wpMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.workingParent.minimumWage,e.statistics.workingParent.livingWage);
+      // var wpMinWage = Math.floor((e.statistics.workingParent.minimumWage/wpMax)*100);
+      // var wpLivWage = Math.floor((e.statistics.workingParent.livingWage/wpMax)*100);
+      // var wpGap = Math.abs(wpLivWage - wpMinWage);
+      // var wpSpacer = wpLivWage >= wpMinWage ? wpMinWage : wpLivWage;
+      // internals.workingParentMinimumWageBar.css('height', wpMinWage + '%');
+      // internals.workingParentLivingWageBar.css('height', wpLivWage + '%');
+      // internals.workingParentWageGapBar.css({
+      //   'height': wpGap + '%',
+      //   'bottom': wpSpacer + '%'
+      // });
 
       // Single Parent
       internals.singleParentWageGapCol.attr('data-positive-gap',e.statistics.singleParent.wageGap < 0);
@@ -107,17 +107,17 @@ define(['jquery'],
       internals.singleParentLivingWage.html(internals.formatMoney(e.statistics.singleParent.livingWage,true));
       internals.singleParentWageGap.html(internals.formatMoney(e.statistics.singleParent.wageGap,true));
       // Chart
-      var spMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.singleParent.minimumWage,e.statistics.singleParent.livingWage);
-      var spMinWage = Math.floor((e.statistics.singleParent.minimumWage/spMax)*100);
-      var spLivWage = Math.floor((e.statistics.singleParent.livingWage/spMax)*100);
-      var spGap = Math.abs(spLivWage - spMinWage);
-      var spSpacer = spLivWage >= spMinWage ? spMinWage : spLivWage;
-      internals.singleParentMinimumWageBar.css('height', spMinWage + '%');
-      internals.singleParentLivingWageBar.css('height', spLivWage + '%');
-      internals.singleParentWageGapBar.css({
-        'height': spGap + '%',
-        'bottom': spSpacer + '%'
-      });
+      // var spMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.singleParent.minimumWage,e.statistics.singleParent.livingWage);
+      // var spMinWage = Math.floor((e.statistics.singleParent.minimumWage/spMax)*100);
+      // var spLivWage = Math.floor((e.statistics.singleParent.livingWage/spMax)*100);
+      // var spGap = Math.abs(spLivWage - spMinWage);
+      // var spSpacer = spLivWage >= spMinWage ? spMinWage : spLivWage;
+      // internals.singleParentMinimumWageBar.css('height', spMinWage + '%');
+      // internals.singleParentLivingWageBar.css('height', spLivWage + '%');
+      // internals.singleParentWageGapBar.css({
+      //   'height': spGap + '%',
+      //   'bottom': spSpacer + '%'
+      // });
 
       // Single Adult
       internals.singleAdultWageGapCol.attr('data-positive-gap',e.statistics.singleAdult.wageGap < 0);
@@ -125,17 +125,17 @@ define(['jquery'],
       internals.singleAdultLivingWage.html(internals.formatMoney(e.statistics.singleAdult.livingWage,true));
       internals.singleAdultWageGap.html(internals.formatMoney(e.statistics.singleAdult.wageGap,true));
       // Chart
-      var saMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.singleAdult.minimumWage,e.statistics.singleAdult.livingWage);
-      var saMinWage = Math.floor((e.statistics.singleAdult.minimumWage/saMax)*100);
-      var saLivWage = Math.floor((e.statistics.singleAdult.livingWage/saMax)*100);
-      var saGap = Math.abs(saLivWage - saMinWage);
-      var saSpacer = saLivWage >= saMinWage ? saMinWage : saLivWage;
-      internals.singleAdultMinimumWageBar.css('height', saMinWage + '%');
-      internals.singleAdultLivingWageBar.css('height', saLivWage + '%');
-      internals.singleAdultWageGapBar.css({
-        'height': saGap + '%',
-        'bottom': saSpacer + '%'
-      });
+      // var saMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.singleAdult.minimumWage,e.statistics.singleAdult.livingWage);
+      // var saMinWage = Math.floor((e.statistics.singleAdult.minimumWage/saMax)*100);
+      // var saLivWage = Math.floor((e.statistics.singleAdult.livingWage/saMax)*100);
+      // var saGap = Math.abs(saLivWage - saMinWage);
+      // var saSpacer = saLivWage >= saMinWage ? saMinWage : saLivWage;
+      // internals.singleAdultMinimumWageBar.css('height', saMinWage + '%');
+      // internals.singleAdultLivingWageBar.css('height', saLivWage + '%');
+      // internals.singleAdultWageGapBar.css({
+      //   'height': saGap + '%',
+      //   'bottom': saSpacer + '%'
+      // });
     };
 
     internals.formatMoney = function(value,includeSymbol){
