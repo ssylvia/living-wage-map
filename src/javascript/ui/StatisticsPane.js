@@ -1,7 +1,15 @@
-define(['jquery'],
-  function($){
+define(['jquery',
+  'modernizr',
+  'shufflejs',
+  'velocity'],
+  function($,
+    Modernizr,
+    Shuffle,
+    Velocity){
 
-    var internals = {};
+    var internals = {
+      animating: false
+    };
 
     internals.createPane = function(){
       internals.pane = internals.settings.el;
@@ -47,7 +55,21 @@ define(['jquery'],
 
       internals.addSelectEvents();
 
-      internals.onLoad();
+      var active = internals.wageGroups.filter('.active');
+      var disabled = internals.wageGroups.not('.active');
+      disabled.find('.active-hidden').velocity('slideDown',{
+        duration: 0
+      });
+      disabled.find('.disabled-hidden').velocity('slideUp',{
+        duration: 0
+      });
+      active.find('.active-hidden').velocity('slideUp',{
+        duration: 0
+      });
+      active.find('.active-hidden').velocity('slideDown',{
+        duration: 0
+      });
+
     };
 
     internals.addSelectEvents = function(){
@@ -68,10 +90,70 @@ define(['jquery'],
 
     internals.selectClass = function(el,selectedClass){
 
-      internals.wageGroups.removeClass('active');
-      el.addClass('active');
+      var sc = internals.settings.data.getSelectedClass();
 
-      internals.settings.data.selectClass(selectedClass);
+      if (!internals.animating && sc !== selectedClass){
+
+        internals.animating = true;
+        var active = internals.wageGroups.filter('.active');
+        var duration = 400;
+        var complete = false;
+
+        active.addClass('previous');
+
+        active.find('.active-hidden').velocity('slideDown',{
+          duration: duration
+        });
+        active.find('.disabled-hidden').velocity('slideUp',{
+          duration: duration
+        });
+        el.find('.active-hidden').velocity('slideUp',{
+          duration: duration
+        });
+        el.find('.disabled-hidden').velocity('slideDown',{
+          duration: duration,
+          begin: function(){
+            active.removeClass('active');
+            el.addClass('active');
+          },
+          progress: function(){
+            internals.settings.grid.shuffle('layout');
+          },
+          complete: function(){
+            if (!complete){
+              complete = true;
+              var active = internals.wageGroups.filter('.active');
+              var disabled = internals.wageGroups.not('.active');
+              var disabledSort = disabled.sort(function(a,b){
+                if ($(a).attr('data-title') > $(b).attr('data-title')) {
+                  return 1;
+                }
+                if ($(a).attr('data-title') < $(b).attr('data-title')) {
+                  return -1;
+                }
+                return 0;
+              });
+
+              var newSort = $.merge(active,disabledSort);
+              newSort.each(function(index){
+                $(this).attr('data-title',index);
+              });
+
+              internals.settings.grid.shuffle('sort',{
+                by: function($el){
+                  return $el.attr('data-title');
+                }
+              });
+              setTimeout(function(){
+                internals.animating = false;
+              },internals.settings.grid.data('shuffle').speed);
+            }
+          }
+        });
+
+        internals.settings.data.selectClass(selectedClass);
+
+      }
 
     };
 
@@ -88,54 +170,26 @@ define(['jquery'],
       internals.workingParentMinimumWage.html(internals.formatMoney(e.statistics.workingParent.minimumWage,true));
       internals.workingParentLivingWage.html(internals.formatMoney(e.statistics.workingParent.livingWage,true));
       internals.workingParentWageGap.html(internals.formatMoney(e.statistics.workingParent.wageGap,true));
-      // Chart
-      // var wpMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.workingParent.minimumWage,e.statistics.workingParent.livingWage);
-      // var wpMinWage = Math.floor((e.statistics.workingParent.minimumWage/wpMax)*100);
-      // var wpLivWage = Math.floor((e.statistics.workingParent.livingWage/wpMax)*100);
-      // var wpGap = Math.abs(wpLivWage - wpMinWage);
-      // var wpSpacer = wpLivWage >= wpMinWage ? wpMinWage : wpLivWage;
-      // internals.workingParentMinimumWageBar.css('height', wpMinWage + '%');
-      // internals.workingParentLivingWageBar.css('height', wpLivWage + '%');
-      // internals.workingParentWageGapBar.css({
-      //   'height': wpGap + '%',
-      //   'bottom': wpSpacer + '%'
-      // });
 
       // Single Parent
       internals.singleParentWageGapCol.attr('data-positive-gap',e.statistics.singleParent.wageGap < 0);
       internals.singleParentMinimumWage.html(internals.formatMoney(e.statistics.singleParent.minimumWage,true));
       internals.singleParentLivingWage.html(internals.formatMoney(e.statistics.singleParent.livingWage,true));
       internals.singleParentWageGap.html(internals.formatMoney(e.statistics.singleParent.wageGap,true));
-      // Chart
-      // var spMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.singleParent.minimumWage,e.statistics.singleParent.livingWage);
-      // var spMinWage = Math.floor((e.statistics.singleParent.minimumWage/spMax)*100);
-      // var spLivWage = Math.floor((e.statistics.singleParent.livingWage/spMax)*100);
-      // var spGap = Math.abs(spLivWage - spMinWage);
-      // var spSpacer = spLivWage >= spMinWage ? spMinWage : spLivWage;
-      // internals.singleParentMinimumWageBar.css('height', spMinWage + '%');
-      // internals.singleParentLivingWageBar.css('height', spLivWage + '%');
-      // internals.singleParentWageGapBar.css({
-      //   'height': spGap + '%',
-      //   'bottom': spSpacer + '%'
-      // });
 
       // Single Adult
       internals.singleAdultWageGapCol.attr('data-positive-gap',e.statistics.singleAdult.wageGap < 0);
       internals.singleAdultMinimumWage.html(internals.formatMoney(e.statistics.singleAdult.minimumWage,true));
       internals.singleAdultLivingWage.html(internals.formatMoney(e.statistics.singleAdult.livingWage,true));
       internals.singleAdultWageGap.html(internals.formatMoney(e.statistics.singleAdult.wageGap,true));
-      // Chart
-      // var saMax = e.extremes.useExtremes ? e.extremes.max : Math.max(e.statistics.singleAdult.minimumWage,e.statistics.singleAdult.livingWage);
-      // var saMinWage = Math.floor((e.statistics.singleAdult.minimumWage/saMax)*100);
-      // var saLivWage = Math.floor((e.statistics.singleAdult.livingWage/saMax)*100);
-      // var saGap = Math.abs(saLivWage - saMinWage);
-      // var saSpacer = saLivWage >= saMinWage ? saMinWage : saLivWage;
-      // internals.singleAdultMinimumWageBar.css('height', saMinWage + '%');
-      // internals.singleAdultLivingWageBar.css('height', saLivWage + '%');
-      // internals.singleAdultWageGapBar.css({
-      //   'height': saGap + '%',
-      //   'bottom': saSpacer + '%'
-      // });
+
+      if (!internals.firstSelect){
+        internals.firstSelect = true;
+
+        internals.settings.grid.shuffle('layout');
+        internals.onLoad();
+      }
+
     };
 
     internals.formatMoney = function(value,includeSymbol){
@@ -150,6 +204,15 @@ define(['jquery'],
 
       internals.settings = $.extend(true,defaults,options);
       internals.self = this;
+
+      var grid = internals.settings.grid = internals.settings.el.find('.sort-grid');
+      grid.shuffle({
+        itemSelector: '.wage-group',
+        speed: 350,
+        gutterWidth: 336,
+        columnWidth: 336
+      });
+      window.t = grid;
 
       this.init = function(){
         internals.createPane();

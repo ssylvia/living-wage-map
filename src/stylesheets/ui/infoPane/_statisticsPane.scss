@@ -29,21 +29,33 @@
     color: $secondaryCallout;
   }
 
-  .wage-headings{
-    margin: 20px 0 10px;
+  .wage-group{
+    width: 100%;
+    background-color: $mainBackground;
 
-    h6{
+    &:not(.active){
+      border-top: 1px solid $mainColor;
+
+      // .disabled-hidden{
+      //   display: none;
+      // }
+    }
+
+    .heading-area{
+      padding: 10px 0;
+    }
+
+    table .class-heading{
+      width: 45%;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      line-height: 1.1em;
       font-weight: bold;
     }
-  }
-
-  .wage-group{
-    padding: 10px 0;
-    border-top: 1px solid $mainColor;
 
     .class-heading, table.stats{
       opacity: 0.2;
-      @include animation(disabledFade 0.5s);
+      @include animation(disabledFade 0.75s);
     }
 
     &:hover {
@@ -54,53 +66,42 @@
     }
 
     &.active {
+      z-index: 1;
+
+      // .active-hidden{
+      //   display: none;
+      // }
+
       .class-heading, table.stats{
         opacity: 1;
-        @include animation(activeFade 0.5s);
+        @include animation(activeFade 0.75s);
+      }
+
+      .heading-area{
+        padding-bottom: 0;
+      }
+
+      .content-area{
+        padding-bottom: 10px;
+      }
+
+      .stat-value{
+        font-size: 1.6em;
       }
     }
 
     .stat-value{
       font-weight: bold;
-      font-size: 1.5em;
+      font-size: 1.2em;
       margin: 0;
     }
-  }
 
-  .content-area{
-    height: 0;
+    .content-area{
 
-    .graph{
-      height: 100%;
-      width: 100%;
-
-      .living-wage-col, .minimum-wage-col, .wage-gap-col{
-        position: relative;
-      }
-
-      .graph-bar, .graph-bar-spacer{
-        position: absolute;
-        width: 90%;
-      }
-
-      .living-wage-col .graph-bar, .minimum-wage-col .graph-bar{
-        bottom: 0;
-      }
-
-      .living-wage-col .graph-bar{
-        background-color: $highlightBackground;
-      }
-
-      .minimum-wage-col .graph-bar{
-        background-color: $mainColor;
-      }
-
-      .wage-gap-col .graph-bar{
-        background-color: $mainCallout;
-      }
-
-      .wage-gap-col[data-positive-gap="true"] .graph{
-        background-color: $secondaryCallout;
+      .category-headings{
+        h6{
+          font-size: 0.8em;
+        }
       }
     }
   }
@@ -118,7 +119,7 @@
 
 @include keyframes(disabledFade) {
   0% {
-    opacity: 0.8;
+    opacity: 1;
   }
   100% {
     opacity: 0.2;

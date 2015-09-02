@@ -3,7 +3,7 @@
   height: 100%;
   width: 100%;
   background-color: $contentBackground;
-  background-image: url($introImage);
+  background-image: image-url($introImage);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

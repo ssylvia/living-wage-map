@@ -21,7 +21,7 @@ define(['jquery','velocity'],
     return function (options){
       var defaults = {
         easing: 'easeOutExpo',
-        animationDuration: 1000
+        animationDuration: 2000
       };
 
       internals.settings = $.extend(true,defaults,options);

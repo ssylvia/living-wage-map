@@ -143,25 +143,28 @@ define(['jquery',
     };
 
     internals.selectClass = function(selectedClass){
-      var countyStr = internals.countyDisplay ? 'counties' : 'metro';
-      var classStr;
+      if (internals.selectedClass != selectedClass){
+        internals.selectedClass = selectedClass;
+        var countyStr = internals.countyDisplay ? 'counties' : 'metro';
+        var classStr;
 
-      if (selectedClass === 'workingParent'){
-        classStr = 'working-parent';
+        if (selectedClass === 'workingParent'){
+          classStr = 'working-parent';
+        }
+        else if (selectedClass === 'singleParent'){
+          classStr = 'single-parent';
+        }
+        else{
+          classStr = 'single-adult';
+        }
+
+        internals.layers.previous = internals.layers.current;
+        internals.layers.current = internals.config.get('livingWageLayers')[countyStr][selectedClass].layerObj;
+
+        $('.map').attr('data-active-layer',classStr + '-' + countyStr);
+
+        internals.onSelectClass();
       }
-      else if (selectedClass === 'singleParent'){
-        classStr = 'single-parent';
-      }
-      else{
-        classStr = 'single-adult';
-      }
-
-      internals.layers.previous = internals.layers.current;
-      internals.layers.current = internals.config.get('livingWageLayers')[countyStr][selectedClass].layerObj;
-
-      $('.map').attr('data-active-layer',classStr + '-' + countyStr);
-
-      internals.onSelectClass();
     };
 
     internals.toggleCounties = function(showCounties){
@@ -238,12 +241,13 @@ define(['jquery',
         return internals.config.get(arg);
       };
 
+      this.getSelectedClass = function(){
+        return internals.selectedClass;
+      };
+
       this.selectClass = internals.selectClass;
 
       this.toggleCounties = internals.toggleCounties;
-
-      window.test = internals.toggleCounties;
-      window.foo = internals;
 
     };
 

@@ -69,143 +69,186 @@
 
           <div class="intro-text">
             <h1>The <span class="callout"><strong>Living Wage</strong></span> Map</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio adipisci quisquam aspernatur, vitae molestiae quo odit! Nisi amet animi reiciendis. Distinctio vitae quis quae minus iure odio et sed aperiam voluptas voluptate velit sunt id quos quidem eaque nesciunt doloribus reiciendis tempora, nulla eum libero. Ea, expedita quidem itaque quibusdam qui ducimus enim sapiente aperiam at porro accusamus officiis dolorem, voluptatibus debitis labore ipsam perspiciatis adipisci iusto placeat. Magnam dolores facilis, eaque qui! Consequuntur eveniet reprehenderit tempora deleniti explicabo illum qui, enim ducimus. Quia ex asperiores recusandae dolore temporibus dolorum earum neque hic assumenda excepturi eaque animi, rerum doloremque voluptatem.</p>
+            <p>MIT’s Living Wage calculator estimates the cost of living (“living wage”) in each of the nation's counties and major metropolitan areas, and compares it to the minimum wage for a variety of household types. Mapped here are three types: parent with spouse and two children, single parent with one child, and single adult.</p>
           </div>
 
           <div class="statistics-pane">
 
             <div class="headings">
               <h4 class="location-name"></h4>
-              <table class="wage-headings">
-                <tbody>
-                  <tr>
-                    <td class="living-wage-col">
-                      <h6 class="wage-heading">Living<br>Wage</h6>
-                    </td>
-                    <td class="minimum-wage-col">
-                      <h6 class="wage-heading">Minimum<br>Wage</h6>
-                    </td>
-                    <td class="wage-gap-col">
-                      <h6 class="wage-heading">The<br>Gap</h6>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
             </div><!--/headings-->
 
-            <div class="working-parent wage-group active">
-              <div class="heading-area">
-                <h5 class="class-heading">Parent with Spouse and Two Kids</h5>
-                <table class="stats">
-                  <tbody>
-                    <tr>
-                      <td class="living-wage-col">
-                        <p class="stat-value"></p>
-                      </td>
-                      <td class="minimum-wage-col">
-                        <p class="stat-value"></p>
-                      </td>
-                      <td class="wage-gap-col">
-                        <p class="stat-value"></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="content-area">
-                <table class="graph">
-                  <tbody>
-                    <tr>
-                      <td class="living-wage-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                      <td class="minimum-wage-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                      <td class="wage-gap-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div><!--/working-parent-->
+            <div class="sort-grid">
 
-            <div class="single-parent wage-group">
-              <div class="heading-area">
-                <h5 class="class-heading">Single Parent with One Child</h5>
-                <table class="stats">
-                  <tbody>
-                    <tr>
-                      <td class="living-wage-col">
-                        <p class="stat-value"></p>
-                      </td>
-                      <td class="minimum-wage-col">
-                        <p class="stat-value"></p>
-                      </td>
-                      <td class="wage-gap-col">
-                        <p class="stat-value"></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="content-area">
-                <table class="graph">
-                  <tbody>
-                    <tr>
-                      <td class="living-wage-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                      <td class="minimum-wage-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                      <td class="wage-gap-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div><!--/single-parent-->
+              <div class="working-parent wage-group active" data-sort="1">
+                <div class="heading-area">
+                  <div class="disabled-hidden">
+                    <table class="class-heading-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h5 class="class-heading">Parent with Spouse and Two Kids</h5>
+                          </td>
+                           <td class="image-wrapper">
+                            <img src="resources/images/art/workingParent.png" class="class-diagram" alt="Parent with Spouse and Two Kids">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-            <div class="single-adult wage-group">
-              <div class="heading-area">
-                <h5 class="class-heading">Single Adult</h5>
-                <table class="stats">
-                  <tbody>
-                    <tr>
-                      <td class="living-wage-col">
-                        <p class="stat-value"></p>
-                      </td>
-                      <td class="minimum-wage-col">
-                        <p class="stat-value"></p>
-                      </td>
-                      <td class="wage-gap-col">
-                        <p class="stat-value"></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="content-area">
-                <table class="graph">
-                  <tbody>
-                    <tr>
-                      <td class="living-wage-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                      <td class="minimum-wage-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                      <td class="wage-gap-col">
-                        <div class="graph-bar"></div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div><!--/single-adult-->
+                  <h5 class="class-heading active-hidden">Parent with Spouse and Two Kids</h5>
+
+                  <table class="stats">
+                    <tbody>
+                      <tr>
+                        <td class="living-wage-col">
+                          <p class="stat-value"></p>
+                        </td>
+                        <td class="minimum-wage-col">
+                          <p class="stat-value"></p>
+                        </td>
+                        <td class="wage-gap-col">
+                          <p class="stat-value"></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="content-area">
+                  <div class="disabled-hidden">
+                    <table class="category-headings">
+                      <tbody>
+                        <tr>
+                          <td class="living-wage-col">
+                            <h6 class="wage-heading">Living<br>Wage</h6>
+                          </td>
+                          <td class="minimum-wage-col">
+                            <h6 class="wage-heading">Minimum<br>Wage</h6>
+                          </td>
+                          <td class="wage-gap-col">
+                            <h6 class="wage-heading">The<br>Gap</h6>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div><!--/working-parent-->
+
+              <div class="single-parent wage-group" data-sort="2">
+                <div class="heading-area">
+                  <div class="disabled-hidden">
+                    <table class="class-heading-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h5 class="class-heading">Single Parent with One Child</h5>
+                          </td>
+                          <td class="image-wrapper">
+                            <img src="resources/images/art/singleParent.png" class="class-diagram" alt="Single Parent with One Child">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h5 class="class-heading active-hidden">Single Parent with One Child</h5>
+
+                  <table class="stats">
+                    <tbody>
+                      <tr>
+                        <td class="living-wage-col">
+                          <p class="stat-value"></p>
+                        </td>
+                        <td class="minimum-wage-col">
+                          <p class="stat-value"></p>
+                        </td>
+                        <td class="wage-gap-col">
+                          <p class="stat-value"></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="content-area">
+                  <div class="disabled-hidden">
+                    <table class="category-headings">
+                      <tbody>
+                        <tr>
+                          <td class="living-wage-col">
+                            <h6 class="wage-heading">Living<br>Wage</h6>
+                          </td>
+                          <td class="minimum-wage-col">
+                            <h6 class="wage-heading">Minimum<br>Wage</h6>
+                          </td>
+                          <td class="wage-gap-col">
+                            <h6 class="wage-heading">The<br>Gap</h6>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div><!--/single-parent-->
+
+              <div class="single-adult wage-group" data-sort="3">
+                <div class="heading-area">
+                  <div class="disabled-hidden">
+                    <table class="class-heading-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h5 class="class-heading">Single Adult</h5>
+                          </td>
+                          <td class="image-wrapper">
+                            <img src="resources/images/art/singleAdult.png" class="class-diagram" alt="Single Adult">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h5 class="class-heading active-hidden">Single Adult</h5>
+
+                  <table class="stats">
+                    <tbody>
+                      <tr>
+                        <td class="living-wage-col">
+                          <p class="stat-value"></p>
+                        </td>
+                        <td class="minimum-wage-col">
+                          <p class="stat-value"></p>
+                        </td>
+                        <td class="wage-gap-col">
+                          <p class="stat-value"></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="content-area">
+                  <div class="disabled-hidden">
+                    <table class="category-headings">
+                      <tbody>
+                        <tr>
+                          <td class="living-wage-col">
+                            <h6 class="wage-heading">Living<br>Wage</h6>
+                          </td>
+                          <td class="minimum-wage-col">
+                            <h6 class="wage-heading">Minimum<br>Wage</h6>
+                          </td>
+                          <td class="wage-gap-col">
+                            <h6 class="wage-heading">The<br>Gap</h6>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div><!--/single-adult-->
+
+            </div><!--/sort-grid-->
 
           </div>
         </div>
