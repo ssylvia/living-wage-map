@@ -51,7 +51,20 @@
 
   <div class="app">
 
-    <div class="intro"></div>
+    <div class="intro">
+      <table class="intro-text">
+        <tbody>
+          <tr>
+            <td class="header-col"><h1>The<br><span class="callout"><strong>Living<br>Wage</strong></span><br>Map</h1></td>
+            <td class="content-col">
+              <p>An ongoing public debate about the struggle of low-income families to stay afloat raises a key question: how great is the gap between the minimum wage and the amount of money needed to meet a minimum standard of living?</p>
+              <br>
+              <p><a href="http://livingwage.mit.edu/" target="_blank">The Living Wage Calculator</a>, developed by Professor Amy Glasmeier of MIT, examines this question. Esri has map-enabled the Calculator data, revealing regional patterns. Click to explore the maps.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="content">
 
@@ -86,8 +99,8 @@
                     <table class="class-heading-table">
                       <tbody>
                         <tr>
-                          <td>
-                            <h5 class="class-heading">Parent with Spouse and Two Kids</h5>
+                          <td class="class-heading">
+                            <h5>Parent with Spouse and Two Kids</h5>
                           </td>
                            <td class="image-wrapper">
                             <img src="resources/images/art/workingParent.png" class="class-diagram" alt="Parent with Spouse and Two Kids">
@@ -142,8 +155,8 @@
                     <table class="class-heading-table">
                       <tbody>
                         <tr>
-                          <td>
-                            <h5 class="class-heading">Single Parent with One Child</h5>
+                          <td class="class-heading">
+                            <h5>Single Parent with One Child</h5>
                           </td>
                           <td class="image-wrapper">
                             <img src="resources/images/art/singleParent.png" class="class-diagram" alt="Single Parent with One Child">
@@ -198,8 +211,8 @@
                     <table class="class-heading-table">
                       <tbody>
                         <tr>
-                          <td>
-                            <h5 class="class-heading">Single Adult</h5>
+                          <td class="class-heading">
+                            <h5>Single Adult</h5>
                           </td>
                           <td class="image-wrapper">
                             <img src="resources/images/art/singleAdult.png" class="class-diagram" alt="Single Adult">

@@ -104,7 +104,7 @@ define(['jquery',
         internals.helper.resetRegionLayout();
 
         // TODO: move to button action
-        internals.intro.hide();
+        // internals.intro.hide();
       }
     };
 

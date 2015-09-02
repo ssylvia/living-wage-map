@@ -2,10 +2,51 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: $contentBackground;
+  background-color: $mainBackground;
   background-image: image-url($introImage);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  z-index: 10000;
+  z-index: 1001;
+
+  .intro-text{
+    position: absolute;
+    height: 50vh;
+    top: calc(25vh);
+    width: 60vw;
+    left: 20vw;
+
+    .header-col{
+      text-align: right;
+      padding-right: 25px;
+      border-right: 6px solid $mainCallout;
+
+      h1{
+        font-size: 4em;
+        margin: 0;
+      }
+    }
+
+    .content-col{
+      padding-left: 25px;
+      border-left: 6px solid $mainCallout;
+      font-size: 1.2em;
+
+      p{
+        margin: 0;
+      }
+
+    }
+  }
+
+}
+
+body .pace{
+  width: 200px;
+  height: 15px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  top: auto;
+  bottom: 75px;
+  left: calc(50% - 125px);
 }

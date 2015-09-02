@@ -35,6 +35,7 @@
 
     &:not(.active){
       border-top: 1px solid $mainColor;
+      border-bottom: 1px solid $mainColor;
 
       // .disabled-hidden{
       //   display: none;
@@ -46,12 +47,22 @@
     }
 
     table .class-heading{
-      width: 45%;
+      width: 120px;
+      padding: 0 15px 8px 0;
       margin-bottom: 10px;
       font-size: 1.2em;
       line-height: 1.1em;
       font-weight: bold;
     }
+
+    .class-heading-table td{
+      vertical-align: bottom;
+    }
+
+    .class-diagram{
+      height: 100px;
+    }
+
 
     .class-heading, table.stats{
       opacity: 0.2;

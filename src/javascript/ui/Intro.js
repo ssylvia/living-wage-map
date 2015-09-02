@@ -1,5 +1,5 @@
-define(['jquery','velocity'],
-  function($,Velocity){
+define(['jquery','velocity','pace'],
+  function($,Velocity,Pace){
 
     var internals = {
       el: $('.intro')
@@ -26,6 +26,8 @@ define(['jquery','velocity'],
 
       internals.settings = $.extend(true,defaults,options);
       internals.self = this;
+
+      Pace.start();
 
       this.init = function(){
         internals.onLoad();

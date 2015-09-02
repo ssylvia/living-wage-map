@@ -23,6 +23,12 @@
       "css": "link",
       "code": 59394,
       "src": "entypo"
+    },
+    {
+      "uid": "289b5f92f23acf1059c93fbf401c1ad5",
+      "css": "down-open",
+      "code": 59395,
+      "src": "entypo"
     }
   ]
 }
