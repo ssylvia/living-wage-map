@@ -18,7 +18,6 @@
     "tests"
   ],
   "dependencies": {
-    "PACE": "pace#~1.0.2",
     "esri-leaflet": "https://github.com/Esri/esri-leaflet/archive/v1.0.0.zip",
     "jquery": "~2.1.4",
     "leaflet": "http://cdn.leafletjs.com/downloads/leaflet-0.7.3.zip",

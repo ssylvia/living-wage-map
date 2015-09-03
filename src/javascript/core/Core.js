@@ -103,10 +103,10 @@ define(['jquery',
 
         internals.helper.resetRegionLayout();
 
-        $('body.pace-done .pace-inactive, .pace-done .loading-placeholder, .pace-done .loading-text').velocity('fadeOut',{
+        $('.loading-wrapper').velocity('fadeOut',{
           duration: 750,
           complete: function(){
-            $('.pace-done .explore-wrapper').velocity({
+            $('.explore-wrapper').velocity({
               opacity: 0.65
             },{
               duration: 750

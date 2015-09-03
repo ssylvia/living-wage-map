@@ -49,9 +49,6 @@
 </head>
 <body>
 
-  <div class="loading-placeholder"></div>
-  <p class="loading-text">Loading Maps</p>
-
   <div class="app">
 
     <div class="intro">
@@ -67,6 +64,11 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="loading-wrapper">
+        <img class="loading-img" src="resources/images/loader.gif" alt="Loading">
+        <p class="loading-text">Loading Maps</p>
+      </div>
 
       <div class="explore-wrapper">
         <p class="explore-text">Explore<br>Maps</p>
