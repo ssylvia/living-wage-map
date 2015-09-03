@@ -117,6 +117,15 @@ define(['jquery',
         $('.explore-wrapper').click(function(){
           internals.intro.hide();
         });
+
+        $('.county-toggle-wrapper .btn-toggle').click(function(){
+          if ($(this).hasClass('county-toggle')){
+            internals.data.toggleCounties(true);
+          }
+          else{
+            internals.data.toggleCounties(false);
+          }
+        });
       }
     };
 

@@ -4,6 +4,37 @@
 .map {
   background-color: $contentBackground;
 
+  .county-toggle-wrapper{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1000;
+
+    .btn-toggle{
+      text-align: center;
+      font-size: 1.2em;
+      padding: 10px;
+      border: 1px solid $mainColor;
+      color: $mainBackground;
+      background-color: $highlightBackground;
+
+      &:not(.active){
+        cursor: pointer;
+
+        &:hover{
+          background-color: #999;
+        }
+      }
+
+      &.active{
+        font-weight: bold;
+        color: $mainColor;
+        background-color: $mainBackground;
+        cursor: default;
+      }
+    }
+  }
+
   &.leaflet-container .leaflet-clickable{
     cursor: none !important;
   }

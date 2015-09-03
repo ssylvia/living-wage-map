@@ -23,7 +23,7 @@ define(['jquery',
 
     internals.dataFields = internals.config.get('dataFields');
 
-    internals.changeDataLayer = function(layer){
+    internals.changeDataLayer = function(layer,countyToggle){
       var firstLoad = true;
       internals.dataLayers.previous = internals.dataLayers.current ? internals.dataLayers.current : false;
       internals.dataLayers.current = layer;
@@ -34,7 +34,7 @@ define(['jquery',
 
       internals.onBeforeDataLayerChange();
 
-      internals.selectClass(internals.selectedClass);
+      internals.selectClass(internals.selectedClass,countyToggle);
 
       internals.dataLayers.current.on('load',function(){
 
@@ -142,8 +142,8 @@ define(['jquery',
       internals.onSelect();
     };
 
-    internals.selectClass = function(selectedClass){
-      if (internals.selectedClass != selectedClass){
+    internals.selectClass = function(selectedClass,countyToggle){
+      if (internals.selectedClass != selectedClass || countyToggle){
         internals.selectedClass = selectedClass;
         var countyStr = internals.countyDisplay ? 'counties' : 'metro';
         var classStr;
@@ -170,11 +170,15 @@ define(['jquery',
     internals.toggleCounties = function(showCounties){
       if (showCounties !== internals.countyDisplay && showCounties){
         internals.countyDisplay = showCounties;
-        internals.changeDataLayer(internals.config.get('livingWageDataLayer').counties);
+        internals.changeDataLayer(internals.config.get('livingWageDataLayer').counties,true);
+        $('.county-toggle-wrapper .btn-toggle').removeClass('active');
+        $('.county-toggle-wrapper .btn-toggle.county-toggle').addClass('active');
       }
       else if (showCounties !== internals.countyDisplay && !showCounties){
         internals.countyDisplay = showCounties;
-        internals.changeDataLayer(internals.config.get('livingWageDataLayer').metro);
+        internals.changeDataLayer(internals.config.get('livingWageDataLayer').metro,true);
+        $('.county-toggle-wrapper .btn-toggle').removeClass('active');
+        $('.county-toggle-wrapper .btn-toggle.metro-toggle').addClass('active');
       }
     };
 

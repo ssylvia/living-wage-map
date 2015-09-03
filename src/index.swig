@@ -280,6 +280,12 @@
       </div>
 
       <div id="map" class="map region-center" data-active-layer="working-parent-counties">
+        <table class="county-toggle-wrapper">
+          <tr>
+            <td class="btn-toggle county-toggle active">County Map</td>
+            <td class="btn-toggle metro-toggle">City Map</td>
+          </tr>
+        </table>
         <div class="tooltip-wrapper">
           <div class="top-arrow"></div>
           <div class="tooltip"></div>
