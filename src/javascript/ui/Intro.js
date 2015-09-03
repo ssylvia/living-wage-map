@@ -2,7 +2,8 @@ define(['jquery','velocity','pace'],
   function($,Velocity,Pace){
 
     var internals = {
-      el: $('.intro')
+      el: $('.intro'),
+      hidden: false
     };
 
     internals.onLoad = function(){
@@ -10,18 +11,33 @@ define(['jquery','velocity','pace'],
     };
 
     internals.hide = function(){
-      internals.el.velocity({
-        top: '-100vh'
-      },{
-        duration: internals.settings.animationDuration,
-        easing: internals.settings.easing
-      });
+      if (!internals.hidden){
+        internals.hidden = true;
+        internals.el.velocity({
+          top: '-100vh'
+        },{
+          duration: internals.settings.animationDuration,
+          easing: internals.settings.easing
+        });
+      }
+    };
+
+    internals.show = function(){
+      if (internals.hidden){
+        internals.hidden = false;
+        internals.el.velocity({
+          top: '0'
+        },{
+          duration: internals.settings.animationDuration,
+          easing: internals.settings.easing
+        });
+      }
     };
 
     return function (options){
       var defaults = {
         easing: 'easeOutExpo',
-        animationDuration: 2000
+        animationDuration: 1500
       };
 
       internals.settings = $.extend(true,defaults,options);

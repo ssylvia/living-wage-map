@@ -1,3 +1,5 @@
+@import "compass/css3/animation";
+
 .intro{
   position: absolute;
   height: 100%;
@@ -41,12 +43,75 @@
 
 }
 
-body .pace{
+.explore-wrapper{
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50vw - 75px);
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  border-radius: 75px;
+  opacity: 0.65;
+  z-index: 10000;
+
+  &:hover{
+    background-color: $mainColor;
+    color: #fff;
+    cursor: pointer;
+
+    .explore-text, .icon-down-open{
+      color: $mainBackground;
+    }
+  }
+
+  .explore-text{
+    margin-top: 28px;
+    font-size: 1.2em;
+  }
+
+  .icon-down-open{
+    margin-top: -80px;
+    font-size: 100px;
+  }
+}
+
+.pace-done .explore-wrapper{
+  display: block;
+  opacity: 0;
+}
+
+body .pace, body .loading-placeholder{
   width: 200px;
   height: 15px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
   top: auto;
   bottom: 75px;
-  left: calc(50% - 125px);
+  left: calc(50% - 102px);
+  border-radius: 5px;
+  border: 2px solid #ccc;
 }
+
+body.pace-done .pace-inactive, .pace-done .loading-placeholder, .pace-done .loading-text{
+  display: block;
+}
+
+.loading-placeholder{
+  position: fixed;
+  background-color: #fff;
+  z-index: 1500;
+}
+
+.loading-text{
+  position: fixed;
+  width: 204px;
+  height: 15px;
+  margin: 0;
+  text-align: center;
+  left: calc(50% - 102px);
+  bottom: 77px;
+  letter-spacing: 1px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 2001;
+}
+

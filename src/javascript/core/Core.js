@@ -103,8 +103,20 @@ define(['jquery',
 
         internals.helper.resetRegionLayout();
 
-        // TODO: move to button action
-        // internals.intro.hide();
+        $('body.pace-done .pace-inactive, .pace-done .loading-placeholder, .pace-done .loading-text').velocity('fadeOut',{
+          duration: 750,
+          complete: function(){
+            $('.pace-done .explore-wrapper').velocity({
+              opacity: 0.65
+            },{
+              duration: 750
+            });
+          }
+        });
+
+        $('.explore-wrapper').click(function(){
+          internals.intro.hide();
+        });
       }
     };
 
