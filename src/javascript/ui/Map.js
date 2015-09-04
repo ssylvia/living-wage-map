@@ -67,7 +67,7 @@ define(['jquery',
               marker.bindPopup(this[0].text + '<br /><div class="clear-geocode">Remove</div>',{
                 closeOnClick: false
               }).openPopup();
-              internals.map.setView(loc);
+            internals.map.setView(loc);
             }
             else{
               swal({

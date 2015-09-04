@@ -21,11 +21,11 @@ define(['jquery'],
     };
 
     internals.showTooltip = function(){
-      internals.settings.el.css('display','block');
+      internals.settings.el.css('opacity','1');
     };
 
     internals.hideTooltip = function(){
-      internals.settings.el.css('display','none');
+      internals.settings.el.css('opacity','0');
     };
 
     internals.moveTooltip = function(e){
