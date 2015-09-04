@@ -4,6 +4,33 @@
 .map {
   background-color: $contentBackground;
 
+  .geocoder-control.leaflet-control.geocoder-control-expanded{
+    position: absolute;
+    top: 73px;
+    left: 46px;
+    width: 246px;
+
+    .geocoder-control-input{
+      background-position: left center;
+      padding: 5px 5px 5px 25px;
+    }
+
+  }
+
+  .clear-geocode{
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 4px;
+    background-color: $highlightBackground;
+    color: $mainBackground;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover{
+      background-color: #666;
+    }
+  }
+
   .home-btn-wrapper{
     position: absolute;
     top: 73px;
@@ -26,6 +53,18 @@
     }
   }
 
+  // .geocoder-wrapper{
+  //   position: absolute;
+  //   top: 73px;
+  //   left: 46px;
+  //   height: 26px;
+  //   width: 246px;
+  //   background-color: $mainBackground;
+  //   border-radius: 4px;
+  //   box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+  //   z-index: 1000;
+  // }
+
   .county-toggle-wrapper{
     position: absolute;
     left: 46px;
@@ -47,7 +86,7 @@
     .btn-toggle{
       text-align: center;
       font-size: 1.2em;
-      padding: 16px;
+      padding: 16px 25px;
       color: $light-gray;
       background-color: $highlightBackground;
 

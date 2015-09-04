@@ -20,6 +20,7 @@ exports.get = internals.Require = function (key, criteria) {
       'modernizr': 'lib/shufflejs/dist/modernizr.custom.min',
       'shufflejs': 'lib/shufflejs/dist/jquery.shuffle.min',
       'jquery-mousewheel': 'lib/jquery-mousewheel/jquery.mousewheel',
+      'sweetAlert': 'lib/sweetalert/dist/sweetalert.min',
       // Require Plugins
       'text': 'lib/text/text',
       'css': 'lib/require-css/css',
@@ -53,6 +54,10 @@ exports.get = internals.Require = function (key, criteria) {
       'jquery-mousewheel': {
         deps: ['jquery'],
         exports: ['$.fn.mousewheel']
+      },
+      'sweetAlert': {
+        deps: ['css!lib/sweetalert/dist/sweetalert.css'],
+        exports: 'swal'
       }
     }
   });

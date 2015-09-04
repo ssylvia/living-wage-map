@@ -56,6 +56,7 @@ define(['jquery',
               });
               internals.onTooltipShow();
               internals.select(ftr.feature);
+              clearTimeout(internals.mouseout);
             });
 
             ftr.on('mouseout',function(){
@@ -63,6 +64,12 @@ define(['jquery',
                 opacity: 0
               });
               internals.onTooltipHide();
+              clearTimeout(internals.mouseout);
+              internals.mouseout = setTimeout(function(){
+                if (internals.geocodeLocation){
+                  internals.selectByLocation(internals.geocodeLocation);
+                }
+              },200);
             });
 
             ftr.on('mousemove',function(e){
@@ -182,6 +189,15 @@ define(['jquery',
       }
     };
 
+    internals.selectByLocation = function(latLng){
+      internals.geocodeLocation = latLng;
+      internals.dataLayers.current.query().contains(latLng).run(function(err,res){
+        if(!err && res.features[0]){
+          internals.select(res.features[0]);
+        }
+      });
+    };
+
     internals.onSelect = function(){
       $(internals.self).trigger({
         type: 'select',
@@ -249,9 +265,15 @@ define(['jquery',
         return internals.selectedClass;
       };
 
+      this.clearGeocode = function(){
+        internals.geocodeLocation = false;
+      };
+
       this.selectClass = internals.selectClass;
 
       this.toggleCounties = internals.toggleCounties;
+
+      this.selectByLocation = internals.selectByLocation;
 
     };
 

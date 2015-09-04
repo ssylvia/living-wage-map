@@ -1,9 +1,11 @@
 define(['jquery',
   'leaflet',
+  'sweetAlert',
   'esri-leaflet',
   'esri-leaflet-geocoder'],
   function($,
-    L){
+    L,
+    swal){
 
     var internals = {};
 
@@ -15,12 +17,54 @@ define(['jquery',
         internals.onLoad();
       });
 
+      internals.geocodeResults = L.layerGroup().addTo(map);
+
       if (internals.settings.config.initialBounds){
         map.fitBounds(internals.settings.config.initialBounds);
       }
 
       $('#map .home-btn-wrapper').click(function(){
         map.fitBounds(internals.settings.config.initialBounds);
+      });
+
+      $('.geocoder-control').keydown(function(e){
+        if (e.keyCode === 13) {
+          var task = new L.esri.Geocoding.Tasks.Geocode().within(internals.settings.config.leafletOptions.maxBounds).text($('.geocoder-control input').val());
+          task.run(function(err,result){
+            if (!err){
+              $.each(result,function(){
+                var ftr = this[0];
+                if (ftr){
+                  var loc = this[0].latlng;
+                  var marker = L.marker(loc);
+                  internals.geocodeResults.clearLayers();
+                  internals.onGeocodeClear();
+                  internals.onGeocode(this[0]);
+                  internals.geocodeResults.addLayer(marker);
+                  marker.on('popupopen',function(){
+                    $('.clear-geocode').click(function(){
+                      internals.geocodeResults.clearLayers();
+                      internals.onGeocodeClear();
+                      $('.geocoder-control input').val('');
+                    });
+                  });
+                  marker.bindPopup(this[0].text + '<br /><div class="clear-geocode">Remove</div>',{
+                    closeOnClick: false
+                  }).openPopup();
+                  map.setView(loc);
+                }
+                else{
+                  swal({
+                    title: 'No Search Results',
+                    text: 'The search text you provided returned no results. Check the accuracy of your text or try making your search more specific.',
+                    confirmButtonText: 'Try Again',
+                    type: 'warning'
+                  });
+                }
+              });
+            }
+          });
+        }
       });
 
     };
@@ -87,6 +131,17 @@ define(['jquery',
 
     internals.onLoad = function(){
       $(internals.self).trigger('load');
+    };
+
+    internals.onGeocodeClear = function(){
+      $(internals.self).trigger('geocode-clear');
+    };
+
+    internals.onGeocode = function(ftr){
+      $(internals.self).trigger({
+        type: 'geocode',
+        feature: ftr
+      });
     };
 
     return function (options){

@@ -283,14 +283,19 @@
       </div>
 
       <div id="map" class="map region-center" data-active-layer="working-parent-counties">
-        <table class="county-toggle-wrapper">
-          <tr>
-            <td class="btn-toggle county-toggle active">County Map</td>
-            <td class="btn-toggle metro-toggle">City Map</td>
-          </tr>
-        </table>
-        <div class="home-btn-wrapper">
+        <div id="county-toggle-wrapper" class="county-toggle-wrapper">
+          <table>
+            <tr>
+              <td class="btn-toggle county-toggle active">County Map</td>
+              <td class="btn-toggle metro-toggle">City Map</td>
+            </tr>
+          </table>
+        </div>
+        <div id="home-button" class="home-btn-wrapper">
           <div class="icon-home"></div>
+        </div>
+        <div id="geocoder" class="geocoder-control leaflet-control geocoder-control-expanded">
+          <input type="text" class="geocoder-control-input leaflet-bar" placeholder="Search County or City">
         </div>
         <div class="tooltip-wrapper">
           <div class="top-arrow"></div>

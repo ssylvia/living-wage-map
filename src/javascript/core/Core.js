@@ -5,6 +5,7 @@ define(['jquery',
   'app/ui/Map',
   'app/ui/Tooltip',
   'app/ui/StatisticsPane',
+  'leaflet',
   'jquery-mousewheel'],
   function($,
     Helper,
@@ -12,7 +13,8 @@ define(['jquery',
     Intro,
     Map,
     Tooltip,
-    StatisticsPane){
+    StatisticsPane,
+    L){
 
     var internals = {
       appLoaded: false,
@@ -64,6 +66,13 @@ define(['jquery',
       $(map).on('load',function(){
         internals.loadedComponents.map = true;
         internals.appReady();
+      });
+
+      $(map).on('geocode',function(e){
+        internals.data.selectByLocation(e.feature.latlng);
+      });
+      $(map).on('geocode-clear',function(e){
+        internals.data.clearGeocode();
       });
 
       map.init();
@@ -143,6 +152,16 @@ define(['jquery',
           }
           else{
             internals.data.toggleCounties(false);
+          }
+        });
+
+        $.each([{id:'county-toggle-wrapper'},{id:'home-button'},{id:'geocoder'}],function(){
+          var div = L.DomUtil.get(this.id);
+          if (!L.Browser.touch) {
+              L.DomEvent.disableClickPropagation(div);
+              L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+          } else {
+              L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
           }
         });
       }

@@ -25,6 +25,7 @@
     "open-sans-fontface": "~1.4.2",
     "require": "http://requirejs.org/docs/release/2.1.20/minified/require.js",
     "require-css": "~0.1.8",
+    "sweetalert": "~1.1.0",
     "text": "~2.0.14",
     "velocity": "~1.2.2"
   }
