@@ -15,9 +15,10 @@
 
   .tooltip{
     background-color: $mainBackground;
+    font-weight: bold;
     text-align: center;
     max-width: 200px;
-    padding: 5px;
+    padding: 5px 10px;
   }
 
   .top-arrow{

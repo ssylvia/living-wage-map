@@ -20,6 +20,7 @@
   "dependencies": {
     "esri-leaflet": "https://github.com/Esri/esri-leaflet/archive/v1.0.0.zip",
     "jquery": "~2.1.4",
+    "jquery-mousewheel": "~3.1.13",
     "leaflet": "http://cdn.leafletjs.com/downloads/leaflet-0.7.3.zip",
     "open-sans-fontface": "~1.4.2",
     "require": "http://requirejs.org/docs/release/2.1.20/minified/require.js",

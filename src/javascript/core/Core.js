@@ -4,7 +4,8 @@ define(['jquery',
   'app/ui/Intro',
   'app/ui/Map',
   'app/ui/Tooltip',
-  'app/ui/StatisticsPane'],
+  'app/ui/StatisticsPane',
+  'jquery-mousewheel'],
   function($,
     Helper,
     Data,
@@ -116,6 +117,24 @@ define(['jquery',
 
         $('.explore-wrapper').click(function(){
           internals.intro.hide();
+        });
+
+        $(document).keydown(function(e){
+          if (e.keyCode === 13 || e.keyCode === 27 || e.keyCode === 40) {
+            internals.intro.hide();
+          }
+        });
+
+        $('.intro').mousewheel(function(e){
+          if (e.deltaY < 0){
+            internals.intro.hide();
+          }
+        });
+
+        $(document).keydown(function(e){
+          if (e.keyCode === 38) {
+            internals.intro.show();
+          }
         });
 
         $('.county-toggle-wrapper .btn-toggle').click(function(){

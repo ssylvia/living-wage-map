@@ -66,7 +66,7 @@ define(['jquery',
       active.find('.active-hidden').velocity('slideUp',{
         duration: 0
       });
-      active.find('.active-hidden').velocity('slideDown',{
+      active.find('.disabled-hidden').velocity('slideDown',{
         duration: 0
       });
 
@@ -117,7 +117,7 @@ define(['jquery',
             el.addClass('active');
           },
           progress: function(){
-            internals.settings.grid.shuffle('layout');
+            // internals.settings.grid.shuffle('layout');
           },
           complete: function(){
             if (!complete){

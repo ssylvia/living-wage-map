@@ -19,6 +19,10 @@ define(['jquery',
         map.fitBounds(internals.settings.config.initialBounds);
       }
 
+      $('#map .home-btn-wrapper').click(function(){
+        map.fitBounds(internals.settings.config.initialBounds);
+      });
+
     };
 
     internals.toggleLayers = function(show,hide,duration){

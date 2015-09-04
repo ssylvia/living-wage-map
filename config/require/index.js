@@ -19,6 +19,7 @@ exports.get = internals.Require = function (key, criteria) {
       'esri-leaflet-geocoder': 'lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder',
       'modernizr': 'lib/shufflejs/dist/modernizr.custom.min',
       'shufflejs': 'lib/shufflejs/dist/jquery.shuffle.min',
+      'jquery-mousewheel': 'lib/jquery-mousewheel/jquery.mousewheel',
       // Require Plugins
       'text': 'lib/text/text',
       'css': 'lib/require-css/css',
@@ -48,6 +49,10 @@ exports.get = internals.Require = function (key, criteria) {
       'shufflejs': {
         deps: ['jquery','modernizr'],
         exports: ['Shuffle','$.fn.shuffle']
+      },
+      'jquery-mousewheel': {
+        deps: ['jquery'],
+        exports: ['$.fn.mousewheel']
       }
     }
   });

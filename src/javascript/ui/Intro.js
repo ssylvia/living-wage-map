@@ -48,6 +48,7 @@ define(['jquery','velocity'],
       };
 
       this.hide = internals.hide;
+      this.show = internals.show;
     };
 
 });

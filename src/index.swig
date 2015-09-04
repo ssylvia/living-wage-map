@@ -59,7 +59,7 @@
             <td class="content-col">
               <p>An ongoing public debate about the struggle of low-income families to stay afloat raises a key question: how great is the gap between the minimum wage and the amount of money needed to meet a minimum standard of living?</p>
               <br>
-              <p><a href="http://livingwage.mit.edu/" target="_blank">The Living Wage Calculator</a>, developed by Professor Amy Glasmeier of MIT, examines this question. Esri has map-enabled the Calculator data, revealing regional patterns. Tap below to explore the maps.</p>
+              <p><a href="http://livingwage.mit.edu/" target="_blank">The Living Wage Calculator</a>, developed by <a href="http://dusp.mit.edu/faculty/amy-glasmeier" target="_blank">Professor Amy Glasmeier</a> of MIT, examines this question. Esri has map-enabled the Calculator data, revealing regional patterns. Tap below to explore the map.</p>
             </td>
           </tr>
         </tbody>
@@ -67,12 +67,12 @@
 
       <div class="loading-wrapper">
         <img class="loading-img" src="resources/images/loader.gif" alt="Loading">
-        <p class="loading-text">Loading Maps</p>
+        <p class="loading-text">Loading Map</p>
       </div>
 
       <div class="explore-wrapper">
-        <p class="explore-text">Explore<br>Maps</p>
-        <div class="icon-down-open"></div>
+        <p class="explore-text">Explore<br>Map</p>
+        <div class="icon-down-open-big"></div>
       </div>
 
     </div>
@@ -93,8 +93,6 @@
 
           <div class="intro-text">
             <h1>The <span class="callout"><strong>Living Wage</strong></span> Map</h1>
-            <p>MIT’s <a href="http://livingwage.mit.edu/" target="_blank">Living Wage Calculator</a> estimates the cost of living (“living wage”) in each of the nation's counties and major metropolitan areas, and compares it to the minimum wage for a variety of household types. Mapped here are three types: parent with spouse and two children, single parent with one child, and single adult.</p>
-            <p>Variations in the gap between living wage and minimum wage occur for a variety of reasons. A city with a relatively high minimum wage, for instance, may still show a large gap due to a high cost of living. Conversely, living expenses tend to be lower in rural areas, making even a relatively low minimum wage come closer to meeting basic household needs.</p>
           </div>
 
           <div class="statistics-pane">
@@ -112,17 +110,17 @@
                       <tbody>
                         <tr>
                           <td class="class-heading">
-                            <h5>Parent with Spouse and Two Kids</h5>
+                            <h5>Parent with Spouse and Two Children</h5>
                           </td>
                            <td class="image-wrapper">
-                            <img src="resources/images/art/workingParent.png" class="class-diagram" alt="Parent with Spouse and Two Kids">
+                            <img src="resources/images/art/workingParent.png" class="class-diagram" alt="Parent with Spouse and Two Children">
                           </td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h5 class="class-heading active-hidden">Parent with Spouse and Two Kids</h5>
+                  <h5 class="class-heading active-hidden">Parent with Spouse and Two Children</h5>
 
                   <table class="stats">
                     <tbody>
@@ -276,6 +274,11 @@
             </div><!--/sort-grid-->
 
           </div>
+
+          <div class="intro-text">
+            <p>MIT’s <a href="http://livingwage.mit.edu/" target="_blank">Living Wage Calculator</a> estimates the cost of living (“living wage”) in each of the nation's counties and major metropolitan areas, and compares it to the minimum wage for a variety of household types. Mapped here are three types: parent with spouse and two children, single parent with one child, and single adult.</p>
+            <p>Variations in the gap between living wage and minimum wage occur for a variety of reasons. A city with a relatively high minimum wage, for instance, may still show a large gap due to a high cost of living. Conversely, living expenses tend to be lower in rural areas, making even a relatively low minimum wage come closer to meeting basic household needs.</p>
+          </div>
         </div>
       </div>
 
@@ -286,6 +289,9 @@
             <td class="btn-toggle metro-toggle">City Map</td>
           </tr>
         </table>
+        <div class="home-btn-wrapper">
+          <div class="icon-home"></div>
+        </div>
         <div class="tooltip-wrapper">
           <div class="top-arrow"></div>
           <div class="tooltip"></div>

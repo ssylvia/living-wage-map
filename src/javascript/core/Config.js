@@ -141,7 +141,7 @@ define(['jquery',
         ],
         minZoom: 4,
         maxZoom: 10,
-        maxBounds: [[72,-40],[13,-182]]
+        maxBounds: [[72,-40],[5,-182]]
       },
       initialBounds: [[50.2,-66],[24.3,-127.7]]
     };
