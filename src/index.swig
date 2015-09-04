@@ -31,6 +31,18 @@
   <meta name="twitter:image" content="{{ app.meta.thumbnail }}">
   <!--End Facebook-->
 
+  {% if environment != 'development' %}
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '{{ app.meta.googleAnalytics }}', 'auto');
+    ga('send', 'pageview');
+  </script>
+  {% endif %}
+
   <!--[if lt IE 9]>
   <script type="text/javascript">
     alert('This app requires a modern browsers to run properly. Please update your browser then visit this page again.');
@@ -296,6 +308,7 @@
         </div>
         <div id="geocoder" class="geocoder-control leaflet-control geocoder-control-expanded">
           <input type="text" class="geocoder-control-input leaflet-bar" placeholder="Search County or City">
+          <span class="icon-search geocoder-icon"></span>
         </div>
         <div class="tooltip-wrapper">
           <div class="top-arrow"></div>

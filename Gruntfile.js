@@ -115,6 +115,15 @@ module.exports = function(grunt) {
           dest: 'dist/stylesheets'
         }]
       },
+      leafletIcons: {
+        files: [{
+          expand: true,
+          flatten: true,
+          cwd: 'src/',
+          src: ['lib/leaflet/images/**'],
+          dest: 'src/resources/images/mapIcons/'
+        }]
+      },
       requireDist: {
         files: [{
           expand: true,
@@ -266,6 +275,7 @@ module.exports = function(grunt) {
     'jshint',
     'copy:requireDev',
     'copy:fontsDev',
+    'copy:leafletIcons',
     'fontello:dev',
     'replace:iconsDev',
     'compass:dev',
@@ -278,6 +288,7 @@ module.exports = function(grunt) {
     'jshint',
     'copy:requireDist',
     'copy:fontsDist',
+    'copy:leafletIcons',
     'copy:resources',
     'fontello:dist',
     'replace:iconsDist',

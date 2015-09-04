@@ -10,9 +10,19 @@
     left: 46px;
     width: 246px;
 
+    .geocoder-icon{
+      position: absolute;
+      font-size: 18px;
+      right: 0;
+      padding: 0 2px;
+      margin-top: -1px;
+      cursor: pointer;
+    }
+
     .geocoder-control-input{
       background-position: left center;
-      padding: 5px 5px 5px 25px;
+      padding: 5px 25px 5px 5px;
+      background-image: none;
     }
 
   }

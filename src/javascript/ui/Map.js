@@ -10,6 +10,8 @@ define(['jquery',
     var internals = {};
 
     internals.createMap = function(){
+      L.Icon.Default.imagePath = 'resources/images/mapIcons';
+
       var map = internals.map = L.map(internals.settings.el,
         internals.settings.config.leafletOptions);
 
@@ -29,44 +31,55 @@ define(['jquery',
 
       $('.geocoder-control').keydown(function(e){
         if (e.keyCode === 13) {
-          var task = new L.esri.Geocoding.Tasks.Geocode().within(internals.settings.config.leafletOptions.maxBounds).text($('.geocoder-control input').val());
-          task.run(function(err,result){
-            if (!err){
-              $.each(result,function(){
-                var ftr = this[0];
-                if (ftr){
-                  var loc = this[0].latlng;
-                  var marker = L.marker(loc);
+          internals.geocodeSearch();
+        }
+      });
+
+      $('.geocoder-control .icon-search').click(function(){
+        internals.geocodeSearch();
+      });
+
+    };
+
+    internals.geocodeSearch = function(){
+      $('.geocoder-icon').addClass('icon-wait animate-spin').removeClass('icon-search');
+
+      var task = new L.esri.Geocoding.Tasks.Geocode().within(internals.settings.config.leafletOptions.maxBounds).text($('.geocoder-control input').val());
+      task.run(function(err,result){
+        $('.geocoder-icon').removeClass('icon-wait animate-spin').addClass('icon-search');
+        if (!err){
+          $.each(result,function(){
+            var ftr = this[0];
+            if (ftr){
+              var loc = this[0].latlng;
+              var marker = L.marker(loc);
+              internals.geocodeResults.clearLayers();
+              internals.onGeocodeClear();
+              internals.onGeocode(this[0]);
+              internals.geocodeResults.addLayer(marker);
+              marker.on('popupopen',function(){
+                $('.clear-geocode').click(function(){
                   internals.geocodeResults.clearLayers();
                   internals.onGeocodeClear();
-                  internals.onGeocode(this[0]);
-                  internals.geocodeResults.addLayer(marker);
-                  marker.on('popupopen',function(){
-                    $('.clear-geocode').click(function(){
-                      internals.geocodeResults.clearLayers();
-                      internals.onGeocodeClear();
-                      $('.geocoder-control input').val('');
-                    });
-                  });
-                  marker.bindPopup(this[0].text + '<br /><div class="clear-geocode">Remove</div>',{
-                    closeOnClick: false
-                  }).openPopup();
-                  map.setView(loc);
-                }
-                else{
-                  swal({
-                    title: 'No Search Results',
-                    text: 'The search text you provided returned no results. Check the accuracy of your text or try making your search more specific.',
-                    confirmButtonText: 'Try Again',
-                    type: 'warning'
-                  });
-                }
+                  $('.geocoder-control input').val('');
+                });
+              });
+              marker.bindPopup(this[0].text + '<br /><div class="clear-geocode">Remove</div>',{
+                closeOnClick: false
+              }).openPopup();
+              internals.map.setView(loc);
+            }
+            else{
+              swal({
+                title: 'No Search Results',
+                text: 'The search text you provided returned no results. Check the accuracy of your text or try making your search more specific.',
+                confirmButtonText: 'Try Again',
+                type: 'warning'
               });
             }
           });
         }
       });
-
     };
 
     internals.toggleLayers = function(show,hide,duration){
