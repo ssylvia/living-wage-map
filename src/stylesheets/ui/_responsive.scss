@@ -1,0 +1,245 @@
+@media (min-width: 1500px) {
+
+  .intro{
+
+    .intro-text{
+
+      .header-col h1{
+        font-size: 5em;
+      }
+
+      .content-col{
+        font-size: 1.5em;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: 2000px) {
+
+  .intro{
+
+    .intro-text{
+
+      .header-col h1{
+        font-size: 6em;
+      }
+
+      .content-col{
+        font-size: 2em;
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 1200px) {
+
+  .intro{
+
+    .intro-text{
+      top: calc(15vh);
+      width: 80vw;
+      left: 10vw;
+
+      .header-col h1{
+        font-size: 4em;
+      }
+
+      .content-col{
+        font-size: 1.5em;
+      }
+    }
+
+  }
+
+  h1{
+    font-size: 1.8em;
+  }
+
+}
+
+@media (max-width: 950px) {
+
+  .intro{
+
+    .intro-text{
+      top: calc(15vh);
+      width: 80vw;
+      left: 10vw;
+
+      .header-col h1{
+        font-size: 3.2em;
+      }
+
+      .content-col{
+        font-size: 1.4em;
+      }
+    }
+
+  }
+
+  .info-pane{
+    min-width: 300px;
+  }
+
+  .header{
+
+    .smLink{
+      display: none;
+    }
+
+    .share{
+      text-align: left;
+      text-indent: 10px;
+    }
+
+    .logo{
+      width: 50%;
+    }
+
+  }
+
+  .statistics-pane{
+
+    .wage-group{
+
+      .class-diagram{
+        height: 75px;
+      }
+
+      .class-heading{
+        font-size: 0.85em;
+      }
+
+      .content-area .category-headings h6{
+        font-size: 0.85em;
+      }
+
+      &.active{
+
+        .stat-value{
+          font-size: 1.4em;
+          font-weight: bold;
+        }
+
+        table .class-heading{
+          font-size: 1.2em;
+        }
+
+      }
+
+    }
+
+  }
+
+  h1{
+    font-size: 1.45em;
+  }
+
+  h4{
+    font-size: 1.2em;
+  }
+
+  p{
+    font-size: 0.9em;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .intro{
+
+    .intro-text{
+      top: calc(15vh);
+      width: 80vw;
+      left: 10vw;
+
+      .header-col h1{
+        font-size: 2.5em;
+      }
+
+      .content-col{
+        font-size: 1em;
+      }
+    }
+
+  }
+
+  .info-pane{
+    min-width: 260px;
+  }
+
+  .header{
+
+    .smLink{
+      display: none;
+    }
+
+    .share{
+      text-align: left;
+      text-indent: 10px;
+    }
+
+    .logo{
+      width: 50%;
+    }
+
+  }
+
+  .statistics-pane{
+
+    .wage-group{
+
+      .class-diagram{
+        height: 60px;
+      }
+
+      .class-heading{
+        font-size: 0.7em;
+      }
+
+      .content-area .category-headings h6{
+        font-size: 0.68em;
+      }
+
+      .stat-value{
+        font-weight: normal;
+      }
+
+      &.active{
+
+        .stat-value{
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+
+        table .class-heading{
+          font-size: 1em;
+        }
+
+      }
+
+    }
+
+  }
+
+  h1{
+    font-size: 1.225em;
+  }
+
+  h4{
+    font-size: 1em;
+  }
+
+  p{
+    font-size: 0.75em;
+  }
+
+}

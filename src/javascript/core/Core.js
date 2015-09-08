@@ -31,6 +31,11 @@ define(['jquery',
 
     internals.init = function(){
       var helper = internals.helper = new Helper();
+
+      if (L.Browser.touch) {
+        $('body').addClass('touch');
+      }
+
       helper.enableRegionLayout();
 
       // initialize components
@@ -152,16 +157,6 @@ define(['jquery',
           }
           else{
             internals.data.toggleCounties(false);
-          }
-        });
-
-        $.each([{id:'county-toggle-wrapper'},{id:'home-button'},{id:'geocoder'}],function(){
-          var div = L.DomUtil.get(this.id);
-          if (!L.Browser.touch) {
-              L.DomEvent.disableClickPropagation(div);
-              L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
-          } else {
-              L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
           }
         });
       }

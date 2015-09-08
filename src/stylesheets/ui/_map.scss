@@ -2,8 +2,38 @@
 @import "compass/css3/animation";
 
 .map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   background-color: $contentBackground;
 
+  &.leaflet-container .leaflet-clickable{
+    cursor: default !important;
+  }
+
+  .living-wage-labels-layer{
+    @include animation(labelsToBlack 2s);
+  }
+
+  &[data-active-layer="working-parent-counties"] .living-wage-labels-layer{
+    @include filter(invert(1) brightness(1.25) contrast(1.1));
+    @include animation(labelsToWhite 1s);
+  }
+
+  // .leaflet-tile{
+  //   filter:blur(10px);
+  //   opacity: 0;
+  //   transform: rotate( 0deg ) scale(0);
+  // }
+  // .leaflet-tile.leaflet-tile-loaded{
+  //   filter:blur(0);
+  //   opacity: 1;
+  //   transform: rotate( 360deg ) scale(1);
+  //   transition:.8s all ease-in;
+  // }
+}
+
+.map-wrapper{
   .icon-lock, .icon-lock-open{
     font-size: 16px;
   }
@@ -12,7 +42,7 @@
     position: absolute;
     top: 74px;
     left: 46px;
-    width: 246px;
+    width: 247px;
 
     .geocoder-icon{
       position: absolute;
@@ -34,7 +64,8 @@
 
   .clear-geocode{
     padding: 5px;
-    margin-top: 5px;
+    margin: 5px auto;
+    width: 80px;
     border-radius: 4px;
     background-color: $highlightBackground;
     color: $mainBackground;
@@ -69,18 +100,6 @@
     }
   }
 
-  // .geocoder-wrapper{
-  //   position: absolute;
-  //   top: 73px;
-  //   left: 46px;
-  //   height: 26px;
-  //   width: 246px;
-  //   background-color: $mainBackground;
-  //   border-radius: 4px;
-  //   box-shadow: 0 1px 5px rgba(0,0,0,0.65);
-  //   z-index: 1000;
-  // }
-
   .county-toggle-wrapper{
     position: absolute;
     left: 46px;
@@ -101,8 +120,8 @@
 
     .btn-toggle{
       text-align: center;
-      font-size: 1.2em;
-      padding: 16px 25px;
+      font-size: 14px;
+      padding: 16px 26px 17px;
       color: $light-gray;
       background-color: $highlightBackground;
 
@@ -123,86 +142,62 @@
       }
     }
   }
+}
 
+.touch{
 
+  .home-btn-wrapper{
+    top: 128px;
+    box-shadow: none;
+    border: 2px solid rgba(0,0,0,0.2);
 
-  &.leaflet-touch{
+    .icon-home{
+      padding: 2px 0 0 4px;
+      height: 28px;
+      width: 26px;
+    }
+  }
 
-    .home-btn-wrapper{
-      top: 128px;
+  .county-toggle-wrapper{
+    left: 54px;
+    top: 10px;
+    border: 2px solid rgba(0,0,0,0.2);
+    box-shadow: none;
+
+    .county-toggle{
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    .metro-toggle{
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .btn-toggle{
+      padding: 20px 25px;
+    }
+  }
+
+  .geocoder-control.leaflet-control.geocoder-control-expanded{
+    top: 85px;
+    left: 54px;
+    width: 243px;
+    height: 30px;
+    border-radius: 4px;
+    border: 2px solid rgba(0,0,0,0.2);
+
+    .geocoder-icon{
+      margin-top: 1px;
+    }
+
+    .geocoder-control-input{
+      // border: 2px solid rgba(0,0,0,0.2);
+      height: 30px;
       box-shadow: none;
-      border: 2px solid rgba(0,0,0,0.2);
-
-      .icon-home{
-        padding: 2px 0 0 4px;
-        height: 28px;
-        width: 26px;
-      }
     }
-
-    .county-toggle-wrapper{
-      left: 54px;
-      top: 10px;
-      border: 2px solid rgba(0,0,0,0.2);
-      box-shadow: none;
-
-      .county-toggle{
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-      }
-
-      .metro-toggle{
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-      }
-
-      .btn-toggle{
-        padding: 20px 25px;
-      }
-    }
-
-    .geocoder-control.leaflet-control.geocoder-control-expanded{
-      top: 85px;
-      left: 54px;
-      width: 250px;
-
-      .geocoder-icon{
-        padding: 0 4px;
-        margin-top: 3px
-      }
-
-      .geocoder-control-input{
-        height: 34px;
-        padding: 7px 27px 7px 7px;
-      }
-    }
-
   }
 
-  &.leaflet-container .leaflet-clickable{
-    cursor: default !important;
-  }
-
-  .living-wage-labels-layer{
-    @include animation(labelsToBlack 2s);
-  }
-
-  &[data-active-layer="working-parent-counties"] .living-wage-labels-layer{
-    @include filter(invert(1) brightness(1.25) contrast(1.1));
-    @include animation(labelsToWhite 1s);
-  }
-
-  // .leaflet-tile{
-  //   filter:blur(10px);
-  //   opacity: 0;
-  //   transform: rotate( 0deg ) scale(0);
-  // }
-  // .leaflet-tile.leaflet-tile-loaded{
-  //   filter:blur(0);
-  //   opacity: 1;
-  //   transform: rotate( 360deg ) scale(1);
-  //   transition:.8s all ease-in;
-  // }
 }
 
 @include keyframes(labelsToWhite) {

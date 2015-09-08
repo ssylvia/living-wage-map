@@ -294,7 +294,14 @@
         </div>
       </div>
 
-      <div id="map" class="map region-center" data-active-layer="working-parent-counties">
+      <div class="map-wrapper region-center">
+        <div id="map" class="map" data-active-layer="working-parent-counties">
+          <div class="tooltip-wrapper">
+            <div class="top-arrow"></div>
+            <div class="tooltip"></div>
+            <div class="bottom-arrow"></div>
+          </div>
+        </div>
         <div id="county-toggle-wrapper" class="county-toggle-wrapper">
           <table>
             <tr>
@@ -310,12 +317,7 @@
           <input type="text" class="geocoder-control-input leaflet-bar" placeholder="Search County or City">
           <span class="icon-search geocoder-icon"></span>
         </div>
-        <div class="tooltip-wrapper">
-          <div class="top-arrow"></div>
-          <div class="tooltip"></div>
-          <div class="bottom-arrow"></div>
-        </div>
-      </div>
+      </div><!--/map-wrapper-->
     </div><!--/content-->
 
   </div>
