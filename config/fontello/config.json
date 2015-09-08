@@ -13,6 +13,18 @@
       "src": "fontelico"
     },
     {
+      "uid": "c1f1975c885aa9f3dad7810c53b82074",
+      "css": "lock",
+      "code": 59399,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "05376be04a27d5a46e855a233d6e8508",
+      "css": "lock-open",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
       "uid": "4743b088aa95d6f3b6b990e770d3b647",
       "css": "facebook",
       "code": 59392,

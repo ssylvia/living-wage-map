@@ -4,9 +4,13 @@
 .map {
   background-color: $contentBackground;
 
+  .icon-lock, .icon-lock-open{
+    font-size: 16px;
+  }
+
   .geocoder-control.leaflet-control.geocoder-control-expanded{
     position: absolute;
-    top: 73px;
+    top: 74px;
     left: 46px;
     width: 246px;
 
@@ -23,6 +27,7 @@
       background-position: left center;
       padding: 5px 25px 5px 5px;
       background-image: none;
+      cursor: select;
     }
 
   }
@@ -43,19 +48,20 @@
 
   .home-btn-wrapper{
     position: absolute;
-    top: 73px;
+    top: 74px;
     left: 10px;
-    height: 26px;
-    width: 26px;
-    font-size: 16px;
-    background-color: $mainBackground;
     border-radius: 4px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.65);
     z-index: 1000;
     cursor: pointer;
 
     .icon-home{
-      margin-left: 2px;
+      padding-left: 2px;
+      height: 26px;
+      width: 24px;
+      font-size: 16px;
+      background-color: $mainBackground;
+      border-radius: 4px;
     }
 
     &:hover{
@@ -116,6 +122,61 @@
         cursor: default;
       }
     }
+  }
+
+
+
+  &.leaflet-touch{
+
+    .home-btn-wrapper{
+      top: 128px;
+      box-shadow: none;
+      border: 2px solid rgba(0,0,0,0.2);
+
+      .icon-home{
+        padding: 2px 0 0 4px;
+        height: 28px;
+        width: 26px;
+      }
+    }
+
+    .county-toggle-wrapper{
+      left: 54px;
+      top: 10px;
+      border: 2px solid rgba(0,0,0,0.2);
+      box-shadow: none;
+
+      .county-toggle{
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+
+      .metro-toggle{
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      .btn-toggle{
+        padding: 20px 25px;
+      }
+    }
+
+    .geocoder-control.leaflet-control.geocoder-control-expanded{
+      top: 85px;
+      left: 54px;
+      width: 250px;
+
+      .geocoder-icon{
+        padding: 0 4px;
+        margin-top: 3px
+      }
+
+      .geocoder-control-input{
+        height: 34px;
+        padding: 7px 27px 7px 7px;
+      }
+    }
+
   }
 
   &.leaflet-container .leaflet-clickable{

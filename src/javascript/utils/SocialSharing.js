@@ -12,7 +12,7 @@ define(['jquery'],
   var _page = {
     title: encodeURIComponent($('meta[property="og:title"]').attr('content')),
     summary: encodeURIComponent($('meta[property="og:description"]').attr('content')),
-    url: encodeURIComponent($('meta[property="og:url"]').attr('content')),
+    url: encodeURIComponent('http://storymaps.esri.com/stories/2015/living-wage-map/'),
     thumbnail: encodeURIComponent($('meta[property="og:image"]').attr('content')),
     twitterText: encodeURIComponent($('meta[name="twitter:title"]').attr('content')),
     twitterHandle: encodeURIComponent($('meta[name="twitter:site"]').attr('content').replace('@',''))

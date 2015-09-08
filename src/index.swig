@@ -17,7 +17,7 @@
 
   <!--Facebook Open Graph-->
   <meta property="og:title" content="{{ app.meta.title  | title }}">
-  <meta property="og:url" content="{{ app.meta.url }}">
+  {# <meta property="og:url" content="{{ app.meta.url }}"> #}
   <meta property="og:image" content="{{ app.meta.thumbnail }}">
   <meta property="og:description" content="{{ app.meta.description }}">
   <!--End Facebook-->

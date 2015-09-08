@@ -2,7 +2,8 @@ define(['jquery',
   'leaflet',
   'sweetAlert',
   'esri-leaflet',
-  'esri-leaflet-geocoder'],
+  'esri-leaflet-geocoder',
+  'leaflet-touch-hover'],
   function($,
     L,
     swal){
@@ -18,6 +19,28 @@ define(['jquery',
       map.on('load',function(){
         internals.onLoad();
       });
+
+      if (L.Browser.touch) {
+        L.control.touchHover().addTo(map);
+        $('.leaflet-control-touchhover-toggle').addClass('icon-lock').click(function(){
+          if ($(this).hasClass('leaflet-control-touchhover-toggled')){
+            $(this).removeClass('icon-lock-open').addClass('icon-lock');
+          }
+          else{
+            $(this).removeClass('icon-lock').addClass('icon-lock-open');
+          }
+        });
+        swal({
+          title: 'Navigation Tips',
+          text: '<ul class="navigation-tips">\
+          <li>Drag your finger over the map to explore wages</li>\
+          <li>Tap the <span class="icon-lock"></span> button to pan or zoom the map</li>\
+          <li>Tap the <span class="icon-lock-open"></span> button to switch back to wage exploration</li>\
+          <li>Tap the <span class="icon-home"></span> button to go back to see the Continental US</li>\
+          </ul>',
+          html: true
+        });
+      }
 
       internals.geocodeResults = L.layerGroup().addTo(map);
 

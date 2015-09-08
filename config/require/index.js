@@ -17,6 +17,7 @@ exports.get = internals.Require = function (key, criteria) {
       'leaflet': 'lib/leaflet/leaflet',
       'esri-leaflet': 'lib/esri-leaflet/dist/esri-leaflet',
       'esri-leaflet-geocoder': 'lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder',
+      'leaflet-touch-hover': 'javascript/utils/LeafletTouchHover',
       'modernizr': 'lib/shufflejs/dist/modernizr.custom.min',
       'shufflejs': 'lib/shufflejs/dist/jquery.shuffle.min',
       'jquery-mousewheel': 'lib/jquery-mousewheel/jquery.mousewheel',
@@ -42,6 +43,10 @@ exports.get = internals.Require = function (key, criteria) {
       },
       'esri-leaflet-geocoder': {
         deps: ['leaflet','esri-leaflet','css!lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css'],
+        exports: 'L'
+      },
+      'leaflet-touch-hover': {
+        deps: ['leaflet'],
         exports: 'L'
       },
       'modernizr': {
