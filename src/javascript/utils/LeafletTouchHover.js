@@ -86,7 +86,7 @@ L.Control.TouchHover = L.Control.extend({
 	_onMove: function (e) {
 		var first = e.touches[0];
 
-		var el = document.elementFromPoint(first.screenX, first.screenY);
+		var el = document.elementFromPoint((first.pageX || first.screenX), (first.pageY || first.screenY));
 
 		if (el !== this._target) {
 			this._simulateEvent('mouseout', first, this._target);
@@ -111,7 +111,7 @@ L.Control.TouchHover = L.Control.extend({
 		var simulatedEvent = document.createEvent('MouseEvents');
 		simulatedEvent.initMouseEvent(
 		        type, true, true, window, 1,
-		        e.screenX, e.screenY,
+		        (e.pageX || e.screenX), (e.pageY || e.screenY),
 		        e.clientX, e.clientY,
 		        false, false, false, false, 0, null);
 

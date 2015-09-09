@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     browserSync: {
       dev: {
         bsFiles: {
-          src : ['.rebooted','src/javascript/**/*.js','src/resources/','build/']
+          src : ['.rebooted','src/javascript/**/*.js','src/index.swig','src/resources/','build/']
         },
         options: {
           proxy: 'localhost:' + configDev.server.manifest.connections[0].port,
@@ -185,7 +185,7 @@ module.exports = function(grunt) {
     nodemon: {
       dev: {
         options: {
-          watch: ['server.js','src/index.swig','./config','./config/require/builds'],
+          watch: ['server.js','./src/*.swig','./config','./config/require/builds'],
           ext: 'js,swig',
           env: {
             MODE: 'development'

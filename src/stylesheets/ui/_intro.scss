@@ -2,14 +2,50 @@
 
 .intro{
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background-color: $mainBackground;
   background-image: image-url($introImage);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   z-index: 999999;
+
+  .mobile-intro{
+    display: none;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
+
+    h1{
+      margin: 25px;
+    }
+
+    p{
+      margin: 0 25px 15px;
+    }
+  }
+
+  .mobile-intro-wrapper{
+
+    .explore-wrapper, .loading-wrapper{
+      display: none;
+    }
+  }
+
+  .mobile-backgound-fill{
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.7;
+    background-color: $mainBackground;
+    z-index: 0;
+  }
 
   .intro-text{
     position: absolute;

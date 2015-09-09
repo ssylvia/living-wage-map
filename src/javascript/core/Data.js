@@ -48,7 +48,7 @@ define(['jquery',
 
           internals.dataLayers.current.eachFeature(function(ftr){
 
-            ftr.on('mouseover',function(){
+            ftr.on('mouseover',function(e){
               ftr.setStyle({
                 opacity: 1,
                 color: '#333',
@@ -73,6 +73,7 @@ define(['jquery',
             });
 
             ftr.on('mousemove',function(e){
+              // console.log(e);
               internals.onHoverPostionChange(e.containerPoint);
             });
 

@@ -35,6 +35,9 @@ define(['jquery',
       if (L.Browser.touch) {
         $('body').addClass('touch');
       }
+      else{
+        $('body').addClass('desktop');
+      }
 
       helper.enableRegionLayout();
 
@@ -139,11 +142,13 @@ define(['jquery',
           }
         });
 
-        $('.intro').mousewheel(function(e){
-          if (e.deltaY < 0){
-            internals.intro.hide();
-          }
-        });
+        if (!$('body').hasClass('touch')){
+          $('.intro').mousewheel(function(e){
+            if (e.deltaY < 0){
+              internals.intro.hide();
+            }
+          });
+        }
 
         $(document).keydown(function(e){
           if (e.keyCode === 38) {

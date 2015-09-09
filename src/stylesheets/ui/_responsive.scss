@@ -243,3 +243,71 @@
   }
 
 }
+
+@media (max-width: 800px) {
+  .intro{
+    .intro-text{
+      display: none;
+    }
+  }
+
+  .desktop .intro{
+    .intro-text{
+      display: block;
+    }
+  }
+}
+
+.touch{
+
+  @media (max-width: 800px) {
+    .intro{
+      overflow: auto;
+
+      .explore-wrapper, .loading-wrapper{
+        display: none;
+      }
+
+      .mobile-intro-wrapper{
+        position: relative;
+
+        .loading-explore-wrapper{
+          position: relative;
+          height: 200px;
+          width: 100%;
+
+          .explore-wrapper, .loading-wrapper{
+            display: block;
+            background: none;
+          }
+        }
+      }
+    }
+
+    .intro-text, .info-pane, .county-toggle-wrapper, .geocoder-control.leaflet-control{
+      display: none;
+    }
+
+    .mobile-intro, .mobile-backgound-fill{
+      display: block;
+    }
+
+    h1{
+      font-size: 2em;
+    }
+
+    p{
+      font-size: 1.1em;
+    }
+  }
+
+  ul.navigation-tips {
+    padding: 0 25px;
+  }
+
+  .sweet-alert.showSweetAlert.visible{
+    margin-top: 0 !important;
+    top: 15px;
+  }
+
+}
