@@ -120,6 +120,54 @@
 
 }
 
+.mobile-selected-display{
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  width: calc(100vw - 78px);
+  padding: 5px;
+  right: 10px;
+  top: 60px;
+  border-radius: 4px;
+  border: 2px solid rgba(0,0,0,0.2);
+
+  h4{
+    margin: 0 0 5px;
+    font-weight: bold;
+  }
+
+  table{
+    width: 100%;
+  }
+
+  .living-wage-col, .wage-gap-col{
+    width: 33.333%;
+    text-transform: uppercase;
+  }
+
+  .minimum-wage-col{
+    width: 33.334%;
+    text-transform: uppercase;
+  }
+
+  .stat-value{
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .wage-heading{
+    font-size: 11px;
+  }
+
+  .wage-gap-col .stat-value, .wage-gap-col .wage-heading{
+    color: $mainCallout;
+  }
+
+  &[data-positive-gap="true"] .wage-gap-col .stat-value, &[data-positive-gap="true"] .wage-gap-col .wage-heading{
+    color: $secondaryCallout;
+  }
+}
+
 @include keyframes(activeFade) {
   0% {
     opacity: 0.4;

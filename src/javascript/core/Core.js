@@ -32,8 +32,18 @@ define(['jquery',
     internals.init = function(){
       var helper = internals.helper = new Helper();
 
-      if (L.Browser.touch) {
+      if (true || L.Browser.touch) {
         $('body').addClass('touch');
+        $('.mobile-footer').click(function(){
+          if ($('.mobile-menu').is(':visible')){
+            $('.mobile-menu').velocity('slideUp',{duration:500});
+            $('.mobile-footer .region-right span').removeClass('icon-down-open-big').addClass('icon-up-open-big');
+          }
+          else{
+            $('.mobile-menu').velocity('slideDown',{duration:500});
+            $('.mobile-footer .region-right span').removeClass('icon-up-open-big').addClass('icon-down-open-big');
+          }
+        });
       }
       else{
         $('body').addClass('desktop');
@@ -156,7 +166,7 @@ define(['jquery',
           }
         });
 
-        $('.county-toggle-wrapper .btn-toggle').click(function(){
+        $('.county-toggle-wrapper .btn-toggle, .mobile-menu .map-type').click(function(){
           if ($(this).hasClass('county-toggle')){
             internals.data.toggleCounties(true);
           }

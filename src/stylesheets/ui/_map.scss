@@ -56,7 +56,7 @@
     .geocoder-control-input{
       background-position: left center;
       padding: 5px 25px 5px 5px;
-      background-image: none;
+      background-image: none !important;
       cursor: select;
     }
 
@@ -179,7 +179,7 @@
     }
   }
 
-  .geocoder-control.leaflet-control.geocoder-control-expanded{
+  .map-wrapper .geocoder-control.leaflet-control.geocoder-control-expanded{
     top: 85px;
     left: 54px;
     width: 243px;
@@ -188,6 +188,9 @@
     border: 2px solid rgba(0,0,0,0.2);
 
     .geocoder-icon{
+      position: absolute;
+      right: 2px;
+      top: 2px;
       margin-top: 1px;
     }
 

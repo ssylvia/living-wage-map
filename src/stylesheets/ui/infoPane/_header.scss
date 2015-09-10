@@ -50,3 +50,89 @@ $fontSize: 1em;
     background-position: right 25px center;
   }
 }
+
+.mobile-banner, .mobile-footer{
+  display: none;
+  height: 50px;
+  width: 100%;
+  background-color: $highlightBackground;
+  z-index: 1001;
+
+  h1.mobile-title{
+    color: $mainBackground;
+    padding: 15px 25px;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .region-right{
+    height: 100%;
+    padding: 0 20px;
+    line-height: 50px;
+
+    .share-icon, .icon-up-open-big{
+      color: $headerLinkActive;
+      padding: 0 5px;
+    }
+  }
+
+  p{
+    padding: 0 25px;
+    font-size: 14px;
+    line-height: 50px;
+    color: $headerLinkActive;
+  }
+}
+
+.mobile-menu{
+  display: none;
+  position: absolute;
+  background-color: $mainBackground;
+  width: calc(100vw - 54px);
+  padding: 10px 25px 25px;
+  z-index: 1000;
+  border: 2px solid $highlightBackground;
+  bottom: 48px;
+
+  .geocoder-control.leaflet-control.geocoder-control-expanded{
+    width: calc(100% - 4px);
+    height: 30px;
+    border-radius: 4px;
+    border: 2px solid rgba(0,0,0,0.2);
+    margin-top: 5px;
+
+    .geocoder-icon{
+      position: absolute;
+      right: 2px;
+      margin-top: 2px;
+    }
+
+    .geocoder-control-input{
+      // border: 2px solid rgba(0,0,0,0.2);
+      height: 30px;
+      box-shadow: none;
+      background-image: none !important;
+    }
+  }
+
+  h6.mobile-menu-header {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  .mobile-option {
+    border: 1px solid $highlightBackground;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 0.8em;
+
+    &.active{
+      color: $mainBackground;
+      background-color: $highlightBackground
+    }
+  }
+}

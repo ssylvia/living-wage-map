@@ -119,6 +119,7 @@ define(['jquery',
     internals.generateStats = function(ftr){
       var countyStr = internals.countyDisplay ? 'counties' : 'metro';
       var stats = {
+        selectedClass: internals.selectedClass,
         location: ftr.properties[internals.dataFields[countyStr].locationName],
         state: ftr.properties[internals.dataFields[countyStr].stateName],
         locationFull: !countyStr ? ftr.properties[internals.dataFields[countyStr].locationName] : ftr.properties[internals.dataFields[countyStr].locationName] + (ftr.properties[internals.dataFields[countyStr].stateName] === 'District of Columbia' ? '' : (', ' + ftr.properties[internals.dataFields[countyStr].stateName])),
@@ -139,15 +140,19 @@ define(['jquery',
         }
       };
 
+      stats.current = stats[internals.selectedClass];
+
       return stats;
     };
 
     internals.select = function(ftr){
-      internals.previousFtr = internals.currentFtr;
-      internals.currentFtr = ftr;
-      internals.currentStats = internals.generateStats(ftr);
+      if (ftr){
+        internals.previousFtr = internals.currentFtr;
+        internals.currentFtr = ftr;
+        internals.currentStats = internals.generateStats(ftr);
 
-      internals.onSelect();
+        internals.onSelect();
+      }
     };
 
     internals.selectClass = function(selectedClass,countyToggle){
@@ -181,12 +186,16 @@ define(['jquery',
         internals.changeDataLayer(internals.config.get('livingWageDataLayer').counties,true);
         $('.county-toggle-wrapper .btn-toggle').removeClass('active');
         $('.county-toggle-wrapper .btn-toggle.county-toggle').addClass('active');
+        $('.mobile-menu .map-type').removeClass('active');
+        $('.mobile-menu .map-type.county-toggle').addClass('active');
       }
       else if (showCounties !== internals.countyDisplay && !showCounties){
         internals.countyDisplay = showCounties;
         internals.changeDataLayer(internals.config.get('livingWageDataLayer').metro,true);
         $('.county-toggle-wrapper .btn-toggle').removeClass('active');
         $('.county-toggle-wrapper .btn-toggle.metro-toggle').addClass('active');
+        $('.mobile-menu .map-type').removeClass('active');
+        $('.mobile-menu .map-type.metro-toggle').addClass('active');
       }
     };
 
@@ -211,6 +220,7 @@ define(['jquery',
     };
 
     internals.onSelectClass = function(){
+      internals.select(internals.currentFtr);
       $(internals.self).trigger({
         type: 'select-class',
         layers: internals.layers

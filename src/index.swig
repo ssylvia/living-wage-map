@@ -315,6 +315,16 @@
         </div>
       </div>
 
+      <div class="mobile-banner region-top">
+        <div class="region-center">
+          <h1 class="mobile-title">The Living Wage Map</h1>
+        </div>
+        <div class="share region-right">
+          <span class="share-icon icon-facebook"></span>
+          <span class="share-icon icon-twitter"></span>
+        </div>
+      </div><!--mobile-banner-->
+
       <div class="map-wrapper region-center">
         <div id="map" class="map" data-active-layer="working-parent-counties">
           <div class="tooltip-wrapper">
@@ -339,6 +349,69 @@
           <span class="icon-search geocoder-icon"></span>
         </div>
       </div><!--/map-wrapper-->
+
+      <div class="mobile-footer region-bottom">
+        <div class="region-center">
+          <p>Choose Family Type and Map</p>
+        </div>
+        <div class="region-right">
+          <span class="icon-up-open-big"></span>
+        </div>
+      </div><!--mobile-footer-->
+
+      <div class="mobile-menu">
+        <h6 class="mobile-menu-header">Choose Family Type</h6>
+        <div class="mobile-option family-type working-parent">Parent with Spouse and Two Children</div>
+        <div class="mobile-option family-type single-parent">Single Parent with One Child</div>
+        <div class="mobile-option family-type single-adult">Single Adult</div>
+        <h6 class="mobile-menu-header">Choose Map</h6>
+        <div class="mobile-option county-toggle map-type active">Counties</div>
+        <div class="mobile-option metro-toggle map-type">Cities</div>
+        <h6 class="mobile-menu-header">Location Search</h6>
+        <div id="geocoder" class="geocoder-control leaflet-control geocoder-control-expanded">
+          <input type="text" class="geocoder-control-input leaflet-bar" placeholder="Search County or City">
+          <span class="icon-search geocoder-icon"></span>
+        </div>
+      </div>
+
+      <div class="mobile-selected-display">
+        <div class="heading-area">
+          <h4 class="location-name"></h4>
+          <h5 class="class-heading"></h5>
+        </div>
+
+        <table class="stats">
+          <tbody>
+            <tr>
+              <td class="living-wage-col">
+                <p class="stat-value"></p>
+              </td>
+              <td class="minimum-wage-col">
+                <p class="stat-value"></p>
+              </td>
+              <td class="wage-gap-col">
+                <p class="stat-value"></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="category-headings">
+          <tbody>
+            <tr>
+              <td class="living-wage-col">
+                <h6 class="wage-heading">Living<br>Wage</h6>
+              </td>
+              <td class="minimum-wage-col">
+                <h6 class="wage-heading">Minimum<br>Wage</h6>
+              </td>
+              <td class="wage-gap-col">
+                <h6 class="wage-heading">The<br>Gap</h6>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div><!--/mobile-selected-display-->
+
     </div><!--/content-->
 
   </div>

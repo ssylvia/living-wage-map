@@ -22,6 +22,7 @@ define(['jquery',
 
       // Working Parent
       internals.workingParent = internals.pane.find('.wage-group.working-parent');
+      internals.workingParentMobile = $('.mobile-menu').find('.family-type.working-parent');
       internals.workingParentWageGapCol = internals.pane.find('.working-parent .wage-gap-col');
       internals.workingParentMinimumWage = internals.pane.find('.working-parent .minimum-wage-col .stat-value');
       internals.workingParentLivingWage = internals.pane.find('.working-parent .living-wage-col .stat-value');
@@ -33,6 +34,7 @@ define(['jquery',
 
       // Single Parent
       internals.singleParent = internals.pane.find('.wage-group.single-parent');
+      internals.singleParentMobile = $('.mobile-menu').find('.family-type.single-parent');
       internals.singleParentWageGapCol = internals.pane.find('.single-parent .wage-gap-col');
       internals.singleParentMinimumWage = internals.pane.find('.single-parent .minimum-wage-col .stat-value');
       internals.singleParentLivingWage = internals.pane.find('.single-parent .living-wage-col .stat-value');
@@ -44,6 +46,7 @@ define(['jquery',
 
       // Single Adult
       internals.singleAdult = internals.pane.find('.wage-group.single-adult');
+      internals.singleAdultMobile = $('.mobile-menu').find('.family-type.single-adult');
       internals.singleAdultWageGapCol = internals.pane.find('.single-adult .wage-gap-col');
       internals.singleAdultMinimumWage = internals.pane.find('.single-adult .minimum-wage-col .stat-value');
       internals.singleAdultLivingWage = internals.pane.find('.single-adult .living-wage-col .stat-value');
@@ -52,6 +55,14 @@ define(['jquery',
       internals.singleAdultLivingWageBar = internals.pane.find('.single-adult .living-wage-col .graph-bar');
       internals.singleAdultWageGapBar = internals.pane.find('.single-adult .wage-gap-col .graph-bar');
       internals.singleAdultWageGapBarSpacer = internals.pane.find('.single-adult .wage-gap-col .graph-bar-spacer');
+
+      // Mobile Display
+      internals.mobileStats = $('.mobile-selected-display');
+      internals.mobileLocation = internals.mobileStats.find('.location-name');
+      internals.mobileClassHeading = internals.mobileStats.find('.class-heading');
+      internals.mobileSelectedMinimum = internals.mobileStats.find('.stats .minimum-wage-col .stat-value');
+      internals.mobileSelectedLiving = internals.mobileStats.find('.stats .living-wage-col .stat-value');
+      internals.mobileSelectedGap = internals.mobileStats.find('.stats .wage-gap-col .stat-value');
 
       internals.addSelectEvents();
 
@@ -69,26 +80,39 @@ define(['jquery',
       active.find('.disabled-hidden').velocity('slideDown',{
         duration: 0
       });
+      internals.workingParentMobile.addClass('active');
 
     };
 
     internals.addSelectEvents = function(){
 
       internals.workingParent.click(function(){
-        internals.selectClass($(this),'workingParent');
+        internals.selectClass($(this),internals.workingParentMobile,'workingParent');
       });
 
       internals.singleParent.click(function(){
-        internals.selectClass($(this),'singleParent');
+        internals.selectClass($(this),internals.singleParentMobile,'singleParent');
       });
 
       internals.singleAdult.click(function(){
-        internals.selectClass($(this),'singleAdult');
+        internals.selectClass($(this),internals.singleAdultMobile,'singleAdult');
+      });
+
+      internals.workingParentMobile.click(function(){
+        internals.selectClass(internals.workingParent,$(this),'workingParent');
+      });
+
+      internals.singleParentMobile.click(function(){
+        internals.selectClass(internals.singleParent,$(this),'singleParent');
+      });
+
+      internals.singleAdultMobile.click(function(){
+        internals.selectClass(internals.singleAdult,$(this),'singleAdult');
       });
 
     };
 
-    internals.selectClass = function(el,selectedClass){
+    internals.selectClass = function(el,mobileEl,selectedClass){
 
       var sc = internals.settings.data.getSelectedClass();
 
@@ -98,6 +122,9 @@ define(['jquery',
         var active = internals.wageGroups.filter('.active');
         var duration = 400;
         var complete = false;
+
+        $('.mobile-menu .family-type').removeClass('active');
+        mobileEl.addClass('active');
 
         active.addClass('previous');
 
@@ -182,6 +209,24 @@ define(['jquery',
       internals.singleAdultMinimumWage.html(internals.formatMoney(e.statistics.singleAdult.minimumWage,true));
       internals.singleAdultLivingWage.html(internals.formatMoney(e.statistics.singleAdult.livingWage,true));
       internals.singleAdultWageGap.html(internals.formatMoney(e.statistics.singleAdult.wageGap,true));
+
+      // Mobile Display
+      var classHeading;
+      if (e.statistics.selectedClass === 'workingParent'){
+        classHeading = 'Parent with Spouse and Two Children';
+      }
+      else if (e.statistics.selectedClass === 'singleParent'){
+        classHeading = 'Single Parent with One Child';
+      }
+      else{
+        classHeading = 'Single Adult';
+      }
+      internals.mobileStats.attr('data-positive-gap',e.statistics.current.wageGap < 0);
+      internals.mobileLocation.text(e.statistics.locationFull);
+      internals.mobileClassHeading.text(classHeading);
+      internals.mobileSelectedMinimum.html(internals.formatMoney(e.statistics.current.minimumWage,true));
+      internals.mobileSelectedLiving.html(internals.formatMoney(e.statistics.current.livingWage,true));
+      internals.mobileSelectedGap.html(internals.formatMoney(e.statistics.current.wageGap,true));
 
       if (!internals.firstSelect){
         internals.firstSelect = true;

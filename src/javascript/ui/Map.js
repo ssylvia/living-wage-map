@@ -52,22 +52,23 @@ define(['jquery',
         map.fitBounds(internals.settings.config.initialBounds);
       });
 
-      $('.geocoder-control').keydown(function(e){
+      $('.geocoder-control input').keydown(function(e){
         if (e.keyCode === 13) {
-          internals.geocodeSearch();
+          internals.geocodeSearch($(this).val());
         }
       });
 
       $('.geocoder-control .icon-search').click(function(){
-        internals.geocodeSearch();
+        var val = $(this).siblings('.geocoder-control-input').val();
+        internals.geocodeSearch(val);
       });
 
     };
 
-    internals.geocodeSearch = function(){
+    internals.geocodeSearch = function(val){
       $('.geocoder-icon').addClass('icon-wait animate-spin').removeClass('icon-search');
 
-      var task = new L.esri.Geocoding.Tasks.Geocode().within(internals.settings.config.leafletOptions.maxBounds).text($('.geocoder-control input').val());
+      var task = new L.esri.Geocoding.Tasks.Geocode().within(internals.settings.config.leafletOptions.maxBounds).text(val || $('.geocoder-control input').val());
       task.run(function(err,result){
         $('.geocoder-icon').removeClass('icon-wait animate-spin').addClass('icon-search');
         if (!err){
@@ -90,7 +91,9 @@ define(['jquery',
               marker.bindPopup(this[0].text + '<br /><div class="clear-geocode">Remove</div>',{
                 closeOnClick: false
               }).openPopup();
-            internals.map.setView(loc);
+              internals.map.setView(loc);
+              $('.mobile-menu').velocity('slideUp',{duration:500});
+              $('.mobile-footer .region-right span').removeClass('icon-down-open-big').addClass('icon-up-open-big');
             }
             else{
               swal({
