@@ -68,18 +68,27 @@ define(['jquery',
     internals.geocodeSearch = function(val){
       $('.geocoder-icon').addClass('icon-wait animate-spin').removeClass('icon-search');
 
-      var task = new L.esri.Geocoding.Tasks.Geocode().within(internals.settings.config.leafletOptions.maxBounds).text(val || $('.geocoder-control input').val());
+      var task = new L.esri.Geocoding.Tasks.Geocode().category('Populated Place').text(val || $('.geocoder-control input').val());
       task.run(function(err,result){
         $('.geocoder-icon').removeClass('icon-wait animate-spin').addClass('icon-search');
         if (!err){
           $.each(result,function(){
-            var ftr = this[0];
+            var ftr;
+
+            $.each(this,function(){
+
+              if (!ftr && this.properties.Country === 'USA'){
+                ftr = this;
+              }
+
+            });
+
             if (ftr){
-              var loc = this[0].latlng;
+              var loc = ftr.latlng;
               var marker = L.marker(loc);
               internals.geocodeResults.clearLayers();
               internals.onGeocodeClear();
-              internals.onGeocode(this[0]);
+              internals.onGeocode(ftr);
               internals.geocodeResults.addLayer(marker);
               marker.on('popupopen',function(){
                 $('.clear-geocode').click(function(){
@@ -88,7 +97,7 @@ define(['jquery',
                   $('.geocoder-control input').val('');
                 });
               });
-              marker.bindPopup(this[0].text + '<br /><div class="clear-geocode">Remove</div>',{
+              marker.bindPopup(ftr.text + '<br /><div class="clear-geocode">Remove</div>',{
                 closeOnClick: false
               }).openPopup();
               internals.map.setView(loc);

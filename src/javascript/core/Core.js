@@ -32,7 +32,7 @@ define(['jquery',
     internals.init = function(){
       var helper = internals.helper = new Helper();
 
-      if (true || L.Browser.touch) {
+      if (L.Browser.touch) {
         $('body').addClass('touch');
         $('.mobile-footer').click(function(){
           if ($('.mobile-menu').is(':visible')){
