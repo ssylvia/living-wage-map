@@ -40,7 +40,7 @@ define(['jquery',
     // Main living wage invisible data layer
     internals.config.livingWageDataLayer = {
       counties: L.esri.featureLayer({
-        url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
+        url: 'https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_County_Select/FeatureServer/0',
         style: function(ftr){
           return {
             opacity: 0,
@@ -50,7 +50,7 @@ define(['jquery',
         simplifyFactor: 0.5
       }),
       metro: L.esri.featureLayer({
-        url: 'http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_Metro_Select/FeatureServer/0',
+        url: 'https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/LW_Metro_Select/FeatureServer/0',
         where: 'top100=1',
         style: function(ftr){
           return {
@@ -73,7 +73,7 @@ define(['jquery',
         zIndex: 2
       }),
       labels: L.esri.tiledMapLayer({
-        url: 'http://arcgis.storymaps.esri.com/ArcGIS/rest/services/Diabetes/USA_State_County_Annotation/MapServer',
+        url: 'https://arcgis.storymaps.esri.com/ArcGIS/rest/services/Diabetes/USA_State_County_Annotation/MapServer',
         // detectRetina: true,
         useCors: false,
         maxNativeZoom: 9,
@@ -85,21 +85,21 @@ define(['jquery',
       counties: {
         singleAdult: {
           layerObj: L.esri.tiledMapLayer({
-            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageSingleAdultbyCounty_Tiled/MapServer',
+            url: 'https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageSingleAdultbyCounty_Tiled/MapServer',
             detectRetina: true,
             zIndex: 1
           })
         },
         singleParent: {
           layerObj: L.esri.tiledMapLayer({
-            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageSingleParentsOneChildbyCounty_Tiled/MapServer',
+            url: 'https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageSingleParentsOneChildbyCounty_Tiled/MapServer',
             detectRetina: true,
             zIndex: 1
           })
         },
         workingParent: {
           layerObj: L.esri.tiledMapLayer({
-            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageParentsOneSpouseTwoChildrenbyCounty_Tiled/MapServer',
+            url: 'https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageParentsOneSpouseTwoChildrenbyCounty_Tiled/MapServer',
             detectRetina: true,
             zIndex: 1
           })
@@ -108,21 +108,21 @@ define(['jquery',
       metro: {
         singleAdult: {
           layerObj: L.esri.tiledMapLayer({
-            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleAdultsbyMetro_Tiled/MapServer',
+            url: 'https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleAdultsbyMetro_Tiled/MapServer',
             detectRetina: true,
             zIndex: 1
           })
         },
         singleParent: {
           layerObj: L.esri.tiledMapLayer({
-            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleParentsOneChildbyMetro_Tiled/MapServer',
+            url: 'https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleParentsOneChildbyMetro_Tiled/MapServer',
             detectRetina: true,
             zIndex: 1
           })
         },
         workingParent: {
           layerObj: L.esri.tiledMapLayer({
-            url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleParentsSupportingSpouseTwoChildrenbyMetro_Tiled/MapServer',
+            url: 'https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/LivingWageofSingleParentsSupportingSpouseTwoChildrenbyMetro_Tiled/MapServer',
             detectRetina: true,
             zIndex: 1
           })
